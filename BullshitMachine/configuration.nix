@@ -153,7 +153,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     appimage-run
     argocd
     aria2
@@ -179,12 +178,14 @@ in
     gcc
     gh
     gimp
+    git
     github-cli
     gnumake
     go
     google-chrome
     gpu-screen-recorder
     gpu-screen-recorder-gtk
+    home-manager
     hyprlock
     hyprpaper
     hyprpolkitagent
@@ -200,6 +201,7 @@ in
     luarocks
     mise
     neofetch
+    neovim
     nextdns
     nh
     nixos-anywhere
@@ -208,9 +210,9 @@ in
     obsidian
     obs-studio
     pavucontrol
+    pdftk
     playerctl
     prismlauncher
-    pdftk
     pywal
     qemu
     quickemu
@@ -235,10 +237,10 @@ in
     uv
     vscode
     waybar
+    wget
+    winetricks
     wineWowPackages.stable
     wineWowPackages.staging
-    winetricks
-    wget
     wofi
     yabridge
     yabridgectl
@@ -344,7 +346,6 @@ in
   networking.interfaces.eno2.wakeOnLan.enable = true;
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
