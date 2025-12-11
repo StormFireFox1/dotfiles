@@ -7,6 +7,7 @@
       uutils-coreutils-noprefix
       dua
       dust
+      hyperfine
       xh
     ];
 
