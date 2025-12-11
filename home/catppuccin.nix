@@ -10,6 +10,7 @@
     kitty.enable = true;
     lazygit.enable = true;
     nushell.enable = true;
+    gh-dash.enable = true;
     thunderbird.enable = true;
     yazi.enable = true;
     zellij.enable = true;

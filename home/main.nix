@@ -36,6 +36,7 @@
       vim = "nvim";
     };
   };
+  programs.gh-dash.enable = true;
   programs.nushell.enable = true;
   programs.zsh.enable = true;
   programs.carapace = {
