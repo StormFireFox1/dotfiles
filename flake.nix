@@ -27,7 +27,10 @@
       homeConfigurations = {
         ghost = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home/main.nix ./home/starship.nix ];
+          modules = [
+            ./home/main.nix
+            ./home/starship.nix
+          ];
         };
       };
 
@@ -38,7 +41,7 @@
             hostname = "BullshitMachine";
           };
         };
-	system = "x86_64-linux";
+        system = "x86_64-linux";
         modules = [
           agenix.nixosModules.default
           ./lib/agenix.nix
@@ -47,7 +50,7 @@
           ./BullshitMachine/configuration.nix
         ];
       };
-    } 
+    }
     // flake-utils.lib.eachDefaultSystem (
       system:
       let
