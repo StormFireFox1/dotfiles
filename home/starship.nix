@@ -113,7 +113,7 @@
         bash_indicator = ">_ ";
         powershell_indicator = "󰨊 ";
       };
-      user = {
+      username = {
         show_always = true;
         style_user = "bg:status_color fg:text_color";
         style_root = "bg:status_color fg:red";
