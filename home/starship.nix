@@ -33,8 +33,8 @@
         "[ ](fg:time_color)"
         "$line_break$character"
       ];
-      pallete = "catppuccin";
-      palletes = {
+      palette = "catppuccin";
+      palettes = {
         catppuccin = {
           status_color = "#f38ba8";
           dir_color = "#fab387";
