@@ -27,7 +27,7 @@
       homeConfigurations = {
         ghost = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home/main.nix ];
+          modules = [ ./home/main.nix ./home/starship.nix ];
         };
       };
 
