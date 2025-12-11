@@ -5,6 +5,7 @@
     flavor = "mocha";
     bat.enable = true;
     eza.enable = true;
+    delta.enable = true;
     fish.enable = true;
     fzf.enable = true;
     kitty.enable = true;
