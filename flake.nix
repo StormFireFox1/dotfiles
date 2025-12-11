@@ -22,15 +22,13 @@
       pkgs = import nixpkgs {
         system = "x86_64-linux";
       };
+      lib = pkgs.lib;
     in
     {
       homeConfigurations = {
         ghost = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            ./home/main.nix
-            ./home/starship.nix
-          ];
+          modules = lib.filesystem.listFilesRecursive ./home;
         };
       };
 
