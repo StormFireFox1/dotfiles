@@ -111,6 +111,7 @@ in
     };
   };
 
+  programs.fish.enable = true;
   programs.firefox.enable = true;
   programs.thunderbird.enable = true;
   programs.hyprland = {
@@ -159,6 +160,7 @@ in
     doggo
     dunst
     fd
+    fish
     flameshot
     fluxcd
     fzf
