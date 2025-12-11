@@ -39,10 +39,6 @@ in
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   nixpkgs.config.allowUnfree = true;
-  nix.settings.substituters = [ "https://nixpkgs-terraform.cachix.org" ];
-  nix.settings.trusted-public-keys = [
-    "nixpkgs-terraform.cachix.org-1:8Sit092rIdAVENA3ZVeH9hzSiqI/jng6JiCrQ1Dmusw="
-  ];
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -78,7 +74,6 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
 
@@ -110,13 +105,6 @@ in
         "uinput"
         "podman"
       ]; # Enable ‘sudo’ for the user.
-      packages = with pkgs; [
-        tree
-      ];
-    };
-    andrei = {
-      isNormalUser = true;
-      extraGroups = [ "podman" ]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         tree
       ];
@@ -171,7 +159,6 @@ in
     doggo
     dunst
     fd
-    fish
     flameshot
     fluxcd
     fzf

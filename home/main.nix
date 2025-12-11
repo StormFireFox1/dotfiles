@@ -2,7 +2,9 @@
 {
   home = {
     packages = with pkgs; [
-      hello
+      uutils-findutils
+      uutils-diffutils
+      uutils-coreutils-noprefix
     ];
 
     username = "ghost";
@@ -10,4 +12,28 @@
 
     stateVersion = "25.05";
   };
+
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      vim = "nvim";
+    };
+  };
+  programs.nushell.enable = true;
+  programs.zsh.enable = true;
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+    enableFishIntegration = true;
+  };
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+    settings = {
+      
+    };
+  };
 }
+
