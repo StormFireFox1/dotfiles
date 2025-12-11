@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
+    catppuccin.url = "github:catppuccin/nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +15,7 @@
     {
       self,
       nixpkgs,
+      catppuccin,
       flake-utils,
       agenix,
       home-manager,
@@ -28,7 +30,10 @@
       homeConfigurations = {
         ghost = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = lib.filesystem.listFilesRecursive ./home;
+          modules = [
+            catppuccin.homeModules.catppuccin
+          ]
+          ++ lib.filesystem.listFilesRecursive ./home;
         };
       };
 
