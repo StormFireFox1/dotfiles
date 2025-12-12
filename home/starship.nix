@@ -141,51 +141,6 @@
         style = "bg:git_color";
         format = "[[($all_status$ahead_behind )](fg:text_color bg:git_color)]($style)";
       };
-      nodejs = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      c = {
-        symbol = " ";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      rust = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      golang = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      php = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      java = {
-        symbol = " ";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      kotlin = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      haskell = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
-      python = {
-        symbol = "";
-        style = "bg:lang_color";
-        format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
-      };
       kubernetes = {
         symbol = " 󱃾";
         disabled = false;
@@ -210,6 +165,24 @@
         vimcmd_replace_symbol = "[](bold fg:purple)";
         vimcmd_visual_symbol = "[](bold fg:yellow)";
       };
-    };
+    }
+    //
+      lib.attrsets.mapAttrs
+        (langName: langSymbol: {
+          symbol = langSymbol;
+          style = "bg:lang_color";
+          format = "[[ $symbol( $version) ](fg:reverse_text_color bg:lang_color)]($style)";
+        })
+        {
+          nodejs = "";
+          c = " ";
+          rust = "";
+          golang = "";
+          php = "";
+          java = " ";
+          kotlin = "";
+          haskell = "";
+          python = "";
+        };
   };
 }
