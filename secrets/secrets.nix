@@ -11,4 +11,5 @@ let
 in
 {
   "StormDriveSmbKey.age".publicKeys = users ++ [ bullshitMachine ];
+  "BorgBackupKey.age".publicKeys = users ++ [ bullshitMachine ];
 }

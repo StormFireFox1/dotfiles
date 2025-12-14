@@ -31,6 +31,7 @@
         ghost = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
+            agenix.homeManagerModules.default
             catppuccin.homeModules.catppuccin
           ]
           ++ lib.filesystem.listFilesRecursive ./home;

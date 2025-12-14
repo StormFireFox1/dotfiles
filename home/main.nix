@@ -10,6 +10,7 @@
       gitnr
       hyperfine
       xh
+      python3
     ];
 
     username = "ghost";
