@@ -36,7 +36,7 @@ in
     shellAbbrs = {
       "!!" = {
         position = "anywhere";
-	expansion = "replace-history";
+        expansion = "replace-history";
       };
       "fr" = "find-repo";
       "fro" = "find-repo-and-open";
