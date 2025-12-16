@@ -14,6 +14,7 @@
       };
       ui = {
         paginate = "never";
+	default-command = "log";
       };
       git = {
         sign-on-push = true;
