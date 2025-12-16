@@ -2,6 +2,8 @@
 {
   home = {
     packages = with pkgs; [
+      nerd-fonts.symbols-only
+      emacs-lsp-booster
       uutils-findutils
       uutils-diffutils
       uutils-coreutils-noprefix

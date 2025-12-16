@@ -1,0 +1,4 @@
+# key: %iso%
+# name: ISO-8601 Local Timestamp
+# --
+`(format-time-string "%F, %r %Z")`

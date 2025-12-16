@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,6 +23,7 @@
       flake-utils,
       agenix,
       home-manager,
+      nix-doom-emacs-unstraightened,
     }@inputs:
     let
       pkgs = import nixpkgs {
@@ -33,6 +38,7 @@
           modules = [
             agenix.homeManagerModules.default
             catppuccin.homeModules.catppuccin
+	    nix-doom-emacs-unstraightened.homeModule
           ]
           ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
         };
