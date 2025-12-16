@@ -14,7 +14,7 @@ in
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
       set -gx EDITOR "nvim"
-      set -gx SHELL "fish"
+      set -gx SHELL "${pkgs.fish}/bin/fish"
     '';
     plugins =
       builtins.map
