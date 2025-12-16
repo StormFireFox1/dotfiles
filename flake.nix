@@ -44,7 +44,7 @@
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-	config.allowUnfree = true;
+        config.allowUnfree = true;
       };
       lib = pkgs.lib;
     in
@@ -92,7 +92,7 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            nixfmt-rfc-style
+            nixfmt-tree
             agenix.packages.${system}.default
           ];
         };
