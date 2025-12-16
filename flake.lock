@@ -38,6 +38,26 @@
         "type": "github"
       }
     },
+    "charmbracelet-nur": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765998250,
+        "narHash": "sha256-TbcV1+NR3w8g/HZv4iUT9FLMyL7yrGxanPUbIM4YEJA=",
+        "owner": "charmbracelet",
+        "repo": "nur",
+        "rev": "9a5ca78df9d3b25127d8dd63d6e3f067a82fdea9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "charmbracelet",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -234,6 +254,7 @@
       "inputs": {
         "agenix": "agenix",
         "catppuccin": "catppuccin",
+        "charmbracelet-nur": "charmbracelet-nur",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",

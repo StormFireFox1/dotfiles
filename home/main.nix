@@ -13,6 +13,7 @@
       hyperfine
       xh
       python3
+      nil
       jq
     ];
 

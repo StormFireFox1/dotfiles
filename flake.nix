@@ -13,6 +13,10 @@
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    charmbracelet-nur = {
+      url = "github:charmbracelet/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,10 +28,12 @@
       agenix,
       home-manager,
       nix-doom-emacs-unstraightened,
+      charmbracelet-nur
     }@inputs:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
+	config.allowUnfree = true;
       };
       lib = pkgs.lib;
     in
@@ -39,6 +45,7 @@
             agenix.homeManagerModules.default
             catppuccin.homeModules.catppuccin
 	    nix-doom-emacs-unstraightened.homeModule
+	    charmbracelet-nur.homeModules.crush
           ]
           ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
         };
