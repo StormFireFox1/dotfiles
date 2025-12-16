@@ -161,7 +161,6 @@ in
     dunst
     fd
     fish
-    flameshot
     fluxcd
     fzf
     gcc
