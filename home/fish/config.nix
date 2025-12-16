@@ -13,8 +13,8 @@ in
     enable = true;
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      set -Ugx EDITOR "nvim"
-      set -Ugx SHELL "fish"
+      set -gx EDITOR "nvim"
+      set -gx SHELL "fish"
     '';
     plugins =
       builtins.map
