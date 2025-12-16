@@ -91,6 +91,8 @@ in
     jack.enable = true;
   };
   hardware.nvidia-container-toolkit.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
