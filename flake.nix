@@ -34,7 +34,7 @@
             agenix.homeManagerModules.default
             catppuccin.homeModules.catppuccin
           ]
-          ++ lib.filesystem.listFilesRecursive ./home;
+          ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
         };
       };
 

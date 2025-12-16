@@ -29,15 +29,6 @@
     enableFishIntegration = true;
     enableZshIntegration = true;
   };
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-    '';
-    shellAliases = {
-      vim = "nvim";
-    };
-  };
   programs.gh-dash.enable = true;
   programs.nushell.enable = true;
   programs.zsh.enable = true;
