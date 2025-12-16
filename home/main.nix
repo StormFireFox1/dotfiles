@@ -43,4 +43,5 @@
     enableFishIntegration = true;
     enableZshIntegration = true;
   };
+  xdg.enable = true;
 }

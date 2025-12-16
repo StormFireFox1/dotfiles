@@ -8,6 +8,7 @@
     delta.enable = true;
     fish.enable = true;
     fzf.enable = true;
+    hyprland.enable = true;
     kitty.enable = true;
     lazygit.enable = true;
     nushell.enable = true;

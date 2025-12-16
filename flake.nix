@@ -52,6 +52,7 @@
       homeConfigurations = {
         ghost = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             agenix.homeManagerModules.default
             inputs.catppuccin.homeModules.catppuccin
