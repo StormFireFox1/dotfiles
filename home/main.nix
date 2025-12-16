@@ -11,6 +11,7 @@
       hyperfine
       xh
       python3
+      jq
     ];
 
     username = "ghost";
