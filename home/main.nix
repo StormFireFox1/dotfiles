@@ -4,6 +4,7 @@
     packages = with pkgs; [
       claude-code
       nerd-fonts.symbols-only
+      adwaita-icon-theme
       emacs-lsp-booster
       uutils-findutils
       uutils-diffutils

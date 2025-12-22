@@ -58,7 +58,7 @@
             inputs.catppuccin.homeModules.catppuccin
             inputs.nix-doom-emacs-unstraightened.homeModule
             inputs.charmbracelet-nur.homeModules.crush
-	    inputs.hyprshell.homeModules.hyprshell
+            inputs.hyprshell.homeModules.hyprshell
             { nixpkgs.overlays = [ inputs.claude-code-nix.overlays.default ]; }
           ]
           ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
