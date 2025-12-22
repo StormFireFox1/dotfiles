@@ -7,7 +7,7 @@
 }:
 {
   age.secrets.BorgBackupKey = {
-    file = ../secrets/BorgBackupKey.age;
+    file = ../../secrets/BorgBackupKey.age;
     path = "${config.home.homeDirectory}/.config/borgmatic.d/key";
   };
   services.borgmatic = {
