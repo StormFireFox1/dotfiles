@@ -61,6 +61,8 @@
         "vim.easymotionMarkerForegroundColorTwoCharFirst" = "#fab387";
         "vim.easymotionMarkerForegroundColorTwoCharSecond" = "#f9e2af";
 
+        "editor.lineNumbers" = "relative";
+
         # Bind s to easymotion search (like leap/flash)
         "vim.normalModeKeyBindings" = [
           {
@@ -93,6 +95,18 @@
             name = "Quick Open";
             type = "command";
             command = "workbench.action.quickOpen";
+          }
+          {
+            key = "e";
+            name = "Open Explorer";
+            type = "command";
+            command = "workbench.files.action.focusFilesExplorer";
+          }
+          {
+            key = "/";
+            name = "Search in project";
+            type = "command";
+            command = "workbench.action.findInFiles";
           }
           {
             key = "g";
