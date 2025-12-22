@@ -2,6 +2,7 @@
 {
   home = {
     packages = with pkgs; [
+      claude-code
       nerd-fonts.symbols-only
       emacs-lsp-booster
       uutils-findutils

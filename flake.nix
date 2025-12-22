@@ -17,18 +17,29 @@
       url = "github:charmbracelet/nur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code-nix = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprshell = {
+      url = "github:H3rmt/hyprshell/hyprshell-release";
+      inputs.hyprland.follows = "hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      catppuccin,
       flake-utils,
       agenix,
       home-manager,
-      nix-doom-emacs-unstraightened,
-      charmbracelet-nur
+      ...
     }@inputs:
     let
       pkgs = import nixpkgs {
@@ -43,9 +54,11 @@
           inherit pkgs;
           modules = [
             agenix.homeManagerModules.default
-            catppuccin.homeModules.catppuccin
-	    nix-doom-emacs-unstraightened.homeModule
-	    charmbracelet-nur.homeModules.crush
+            inputs.catppuccin.homeModules.catppuccin
+            inputs.nix-doom-emacs-unstraightened.homeModule
+            inputs.charmbracelet-nur.homeModules.crush
+	    inputs.hyprshell.homeModules.hyprshell
+            { nixpkgs.overlays = [ inputs.claude-code-nix.overlays.default ]; }
           ]
           ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
         };

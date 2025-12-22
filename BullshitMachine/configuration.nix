@@ -154,7 +154,6 @@ in
     cargo
     cava
     cifs-utils
-    claude-code
     croc
     direnv
     discord
