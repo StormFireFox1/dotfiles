@@ -34,6 +34,10 @@
       inputs.hyprland.follows = "hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -63,7 +67,12 @@
             inputs.nix-doom-emacs-unstraightened.homeModule
             inputs.charmbracelet-nur.homeModules.crush
             inputs.hyprshell.homeModules.hyprshell
-            { nixpkgs.overlays = [ inputs.claude-code-nix.overlays.default ]; }
+            {
+              nixpkgs.overlays = [
+                inputs.claude-code-nix.overlays.default
+                inputs.nix-vscode-extensions.overlays.default
+              ];
+            }
           ]
           ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
         };
