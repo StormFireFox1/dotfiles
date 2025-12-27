@@ -79,7 +79,7 @@
             {
               fireflake = {
                 username = "ghost";
-		backup.enable = true;
+                backup.enable = true;
                 hypr.enable = true;
                 programs = {
                   enable = true;
