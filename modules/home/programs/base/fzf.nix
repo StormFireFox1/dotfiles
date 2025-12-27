@@ -1,0 +1,18 @@
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+let
+  cfg = config.fireflake.programs;
+in
+{
+  config = lib.mkIf cfg.enable {
+    programs.fzf = {
+      enable = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
+  };
+}

@@ -55,26 +55,41 @@
         config.allowUnfree = true;
       };
       lib = pkgs.lib;
+      commonHomeModules = [
+        agenix.homeManagerModules.default
+        inputs.catppuccin.homeModules.catppuccin
+        inputs.nix-doom-emacs-unstraightened.homeModule
+        inputs.charmbracelet-nur.homeModules.crush
+        inputs.hyprshell.homeModules.hyprshell
+        {
+          nixpkgs.overlays = [
+            inputs.claude-code-nix.overlays.default
+            inputs.nix-vscode-extensions.overlays.default
+          ];
+        }
+        ./modules/home
+      ];
     in
     {
       homeConfigurations = {
-        ghost = home-manager.lib.homeManagerConfiguration {
+        "ghost@BullshitMachine" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [
-            agenix.homeManagerModules.default
-            inputs.catppuccin.homeModules.catppuccin
-            inputs.nix-doom-emacs-unstraightened.homeModule
-            inputs.charmbracelet-nur.homeModules.crush
-            inputs.hyprshell.homeModules.hyprshell
+          modules = commonHomeModules ++ [
             {
-              nixpkgs.overlays = [
-                inputs.claude-code-nix.overlays.default
-                inputs.nix-vscode-extensions.overlays.default
-              ];
+              fireflake = {
+                username = "ghost";
+                backup = {
+                  enable = true;
+                };
+                programs = {
+                  enable = true;
+                  hypr.enable = true;
+                  wayland.enable = true;
+                };
+              };
             }
-          ]
-          ++ lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive ./home);
+          ];
         };
       };
 
