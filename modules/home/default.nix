@@ -1,13 +1,14 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = fireflake;
+  cfg = config.fireflake;
   isDarwin = pkgs.stdenv.isDarwin;
 in
 {
   imports = [
     ./agenix.nix
     ./catppuccin.nix
+    ./backup
     ./programs
     ./hypr
   ];

@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 with lib;
 let
-  cfg = fireflake.programs;
-  readAllNixFiles = (x: lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFiles x));
+  cfg = config.fireflake.programs;
+  readAllNixFiles = (x: lib.filter (x: lib.strings.hasSuffix ".nix" x) (lib.filesystem.listFilesRecursive x));
 in
 {
   imports = lib.lists.flatten [
