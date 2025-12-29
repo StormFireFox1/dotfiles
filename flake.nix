@@ -54,6 +54,10 @@
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
+      darwin_pkgs = import nixpkgs {
+        system = "aarch64-darwin";
+        config.allowUnfree = true;
+      };
       lib = pkgs.lib;
       commonHomeModules = [
         agenix.homeManagerModules.default
@@ -84,6 +88,24 @@
                 programs = {
                   enable = true;
                   wayland.enable = true;
+                };
+              };
+            }
+          ];
+        };
+        "ghost@StormPrism" = home-manager.lib.homeManagerConfiguration {
+          pkgs = darwin_pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = commonHomeModules ++ [
+            {
+              fireflake = {
+                username = "ghost";
+                backup = {
+                  enable = true;
+                  repoName = "StormPrism";
+                };
+                programs = {
+                  enable = true;
                 };
               };
             }
@@ -122,6 +144,8 @@
             nixfmt-tree
             nixfmt-rfc-style
             agenix.packages.${system}.default
+            nh
+            home-manager.packages.${system}.default
           ];
         };
       }

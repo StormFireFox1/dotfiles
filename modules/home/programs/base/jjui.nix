@@ -6,11 +6,19 @@
 }:
 let
   cfg = config.fireflake.programs;
+  themeRepo = pkgs.fetchFromGitHub {
+    owner = "vic";
+    repo = "tinted-jjui";
+    rev = "b3db8568f2cd53f4cb457dea8042897f91386a1a";
+    hash = "sha256-1EkpxSk/PnTjfc+9r8wnkLqMibJoVuOtaaMWJaowA9M=";
+  };
+  themeFilePath = "${themeRepo}/themes/base24-catppuccin-mocha.toml";
 in
 {
   config = lib.mkIf cfg.enable {
     programs.jjui = {
       enable = true;
+      configDir = "${config.xdg.configHome}/jjui";
       settings = {
         ui = {
           theme = "catppuccin-mocha";
@@ -19,16 +27,7 @@ in
     };
 
     xdg.configFile = {
-      "jjui/themes/catppuccin-mocha.toml".source =
-        let
-          repo = pkgs.fetchFromGitHub {
-            owner = "vic";
-            repo = "tinted-jjui";
-            rev = "b3db8568f2cd53f4cb457dea8042897f91386a1a";
-            hash = "sha256-1EkpxSk/PnTjfc+9r8wnkLqMibJoVuOtaaMWJaowA9M=";
-          };
-        in
-        "${repo}/themes/base24-catppuccin-mocha.toml";
+      "jjui/themes/catppuccin-mocha.toml".source = themeFilePath;
     };
   };
 }

@@ -42,6 +42,7 @@ in
         python3
         nil
         jq
+        neovim
       ];
 
       username = cfg.username;
@@ -50,18 +51,6 @@ in
     };
     xdg = {
       enable = true;
-    };
-    gtk = {
-      enable = true;
-      colorScheme = "dark";
-      iconTheme = {
-        name = "Papirus";
-        package = pkgs.papirus-icon-theme;
-      };
-      cursorTheme = {
-        name = "Bibata Modern Classic";
-        package = pkgs.bibata-cursors;
-      };
     };
   };
 }

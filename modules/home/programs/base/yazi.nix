@@ -26,7 +26,6 @@ in
           "mount"
           "ouch"
           "piper"
-          "recycle-bin"
           "restore"
           "rich-preview"
           "starship"
