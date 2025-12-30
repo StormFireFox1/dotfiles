@@ -19,7 +19,7 @@ in
       shellIntegration.enableFishIntegration = true;
       settings = {
         background_opacity = 0.9;
-        shell = "fish";
+        shell = "${pkgs.fish}/bin/fish";
         confirm_os_window_close = 0;
       };
     };

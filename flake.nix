@@ -38,6 +38,13 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+    };
   };
 
   outputs =
@@ -47,6 +54,8 @@
       flake-utils,
       agenix,
       home-manager,
+      darwin,
+      nix-homebrew,
       ...
     }@inputs:
     let
@@ -128,6 +137,16 @@
           ./BullshitMachine/nvidia.nix
           ./BullshitMachine/configuration.nix
         ];
+      };
+
+      darwinConfigurations.StormPrism = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          nix-homebrew.darwinModules.nix-homebrew
+          ./modules/darwin
+          ./modules/darwin/hosts/StormPrism.nix
+        ];
+        specialArgs = { inherit inputs; };
       };
     }
     // flake-utils.lib.eachDefaultSystem (
