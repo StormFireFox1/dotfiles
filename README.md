@@ -1,4 +1,6 @@
-![Fireflake logo](./assets/fireflake.svg)
+<p align="center">
+  <img src="./assets/fireflake.svg" alt="Fireflake logo" />
+</p>
 
 # Dotfiles (a.k.a *"Fireflake"*)
 
