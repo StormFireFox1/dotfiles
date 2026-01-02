@@ -37,6 +37,8 @@ in
             myriad-dreamin.tinymist
             ms-kubernetes-tools.vscode-kubernetes-tools
             bazelbuild.vscode-bazel
+            # VSpaceCode
+            vspacecode.vspacecode
           ])
           ++ (with pkgs.vscode-marketplace; [
             anthropic.claude-code
@@ -94,190 +96,44 @@ in
             }
           ];
 
-          "whichkey.delay" = 300;
-          "whichkey.sortOrder" = "alphabetically";
-
-          # Which-key bindings. Basically copied from LazyVim.
-          "whichkey.bindings" = [
+          "vim.normalModeKeyBindingsNonRecursive" = [
             {
-              key = " ";
-              name = "Quick Open";
-              type = "command";
-              command = "workbench.action.quickOpen";
+              before = [ "<space>" ];
+              commands = [ "vspacecode.space" ];
             }
             {
-              key = "e";
-              name = "Open Explorer";
-              type = "command";
-              command = "workbench.files.action.focusFilesExplorer";
-            }
-            {
-              key = "/";
-              name = "Search in project";
-              type = "command";
-              command = "workbench.action.findInFiles";
-            }
-            {
-              key = "g";
-              name = "+git";
-              type = "bindings";
-              bindings = [
+              before = [ "," ];
+              commands = [
+                "vspacecode.space"
                 {
-                  key = "g";
-                  name = "Lazygit";
-                  type = "command";
-                  command = "workbench.action.terminal.newWithProfile";
-                  args = {
-                    profileName = "lazygit";
-                  };
+                  command = "whichkey.triggerKey";
+                  args = "m";
                 }
+              ];
+            }
+          ];
+          "vim.visualModeKeyBindingsNonRecursive" = [
+            {
+              before = [ "<space>" ];
+              commands = [ "vspacecode.space" ];
+            }
+            {
+              before = [ "," ];
+              commands = [
+                "vspacecode.space"
                 {
-                  key = "s";
-                  name = "Git status";
-                  type = "command";
-                  command = "git.status";
-                }
-                {
-                  key = "b";
-                  name = "Git blame";
-                  type = "command";
-                  command = "git.blameFile";
+                  command = "whichkey.triggerKey";
+                  args = "m";
                 }
               ];
             }
             {
-              key = "j";
-              name = "+jujutsu";
-              type = "bindings";
-              bindings = [
-                {
-                  key = "j";
-                  name = "jjui";
-                  type = "command";
-                  command = "workbench.action.terminal.newWithProfile";
-                  args = {
-                    profileName = "jjui";
-                  };
-                }
-              ];
+              before = [ ">" ];
+              commands = [ "editor.action.indentLines" ];
             }
             {
-              key = "t";
-              name = "+terminal";
-              type = "bindings";
-              bindings = [
-                {
-                  key = "t";
-                  name = "Toggle terminal";
-                  type = "command";
-                  command = "workbench.action.terminal.toggleTerminal";
-                }
-                {
-                  key = "n";
-                  name = "New terminal";
-                  type = "command";
-                  command = "workbench.action.terminal.new";
-                }
-                {
-                  key = "m";
-                  name = "Maximize panel";
-                  type = "command";
-                  command = "workbench.action.toggleMaximizedPanel";
-                }
-              ];
-            }
-            {
-              key = "f";
-              name = "+find";
-              type = "bindings";
-              bindings = [
-                {
-                  key = "f";
-                  name = "Find file";
-                  type = "command";
-                  command = "workbench.action.quickOpen";
-                }
-                {
-                  key = "g";
-                  name = "Find in files";
-                  type = "command";
-                  command = "workbench.action.findInFiles";
-                }
-                {
-                  key = "s";
-                  name = "Find symbol";
-                  type = "command";
-                  command = "workbench.action.gotoSymbol";
-                }
-              ];
-            }
-            {
-              key = "b";
-              name = "+buffer";
-              type = "bindings";
-              bindings = [
-                {
-                  key = "b";
-                  name = "Switch buffer";
-                  type = "command";
-                  command = "workbench.action.showAllEditors";
-                }
-                {
-                  key = "d";
-                  name = "Close buffer";
-                  type = "command";
-                  command = "workbench.action.closeActiveEditor";
-                }
-              ];
-            }
-            {
-              key = "w";
-              name = "+window";
-              type = "bindings";
-              bindings = [
-                {
-                  key = "v";
-                  name = "Split vertical";
-                  type = "command";
-                  command = "workbench.action.splitEditor";
-                }
-                {
-                  key = "s";
-                  name = "Split horizontal";
-                  type = "command";
-                  command = "workbench.action.splitEditorDown";
-                }
-                {
-                  key = "d";
-                  name = "Close window";
-                  type = "command";
-                  command = "workbench.action.closeEditorsInGroup";
-                }
-                {
-                  key = "h";
-                  name = "Focus left";
-                  type = "command";
-                  command = "workbench.action.focusLeftGroup";
-                }
-                {
-                  key = "l";
-                  name = "Focus right";
-                  type = "command";
-                  command = "workbench.action.focusRightGroup";
-                }
-                {
-                  key = "j";
-                  name = "Focus below";
-                  type = "command";
-                  command = "workbench.action.focusBelowGroup";
-                }
-                {
-                  key = "k";
-                  name = "Focus above";
-                  type = "command";
-                  command = "workbench.action.focusAboveGroup";
-                }
-              ];
+              before = [ "<" ];
+              commands = [ "editor.action.outdentLines" ];
             }
           ];
 
@@ -295,40 +151,188 @@ in
               path = "jjui";
             };
           };
+          "vspacecode.bindingOverrides" = [
+            {
+              keys = "g.g";
+              name = "Open Lazygit";
+              type = "command";
+              command = "workbench.action.terminal.newWithProfile";
+              args = {
+                profileName = "lazygit";
+              };
+            }
+            {
+              keys = "j.j";
+              name = "Open jjui";
+              type = "command";
+              command = "workbench.action.terminal.newWithProfile";
+              args = {
+                profileName = "jjui";
+              };
+            }
+          ];
         };
         keybindings = [
-          # Trigger which-key with space in normal mode
+          # Keybindings for VSpaceCode stolen directly from the docs:
+          # https://vspacecode.github.io/docs/
+          # Trigger vspacecode in empty editor group
           {
             key = "space";
-            command = "whichkey.show";
-            when = "editorTextFocus && vim.mode == 'Normal'";
+            command = "vspacecode.space";
+            when = "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus";
           }
-          # Git: <leader>gg for lazygit
+          # Trigger vspacecode when sidebar is in focus
+          {
+            key = "space";
+            command = "vspacecode.space";
+            when = "sideBarFocus && !inputFocus && !whichkeyActive";
+          }
+          # Keybindings required for edamagit
+          # https://github.com/kahole/edamagit#vim-support-vscodevim
+          # Cannot be added to package.json because keybinding replacements
+          {
+            key = "tab";
+            command = "extension.vim_tab";
+            when = "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'";
+          }
+          {
+            key = "tab";
+            command = "-extension.vim_tab";
+            when = "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'";
+          }
+          {
+            key = "x";
+            command = "magit.discard-at-point";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/";
+          }
+          {
+            key = "k";
+            command = "-magit.discard-at-point";
+          }
+          {
+            key = "-";
+            command = "magit.reverse-at-point";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/";
+          }
+          {
+            key = "v";
+            command = "-magit.reverse-at-point";
+          }
+          {
+            key = "shift+-";
+            command = "magit.reverting";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/";
+          }
+          {
+            key = "shift+v";
+            command = "-magit.reverting";
+          }
+          {
+            key = "shift+o";
+            command = "magit.resetting";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/";
+          }
+          {
+            key = "shift+x";
+            command = "-magit.resetting";
+          }
+          {
+            key = "x";
+            command = "-magit.reset-mixed";
+          }
+          {
+            key = "ctrl+u x";
+            command = "-magit.reset-hard";
+          }
+          # Extra ref menu support for edamagit with the key "y"
+          # Cannot be added to package.json because keybinding replacements
+          {
+            key = "y";
+            command = "-magit.show-refs";
+          }
+          {
+            key = "y";
+            command = "vspacecode.showMagitRefMenu";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'";
+          }
+          # Extra refresh menu support for edamagit with the key "g"
+          # Cannot be added to package.json because keybinding replacements
           {
             key = "g";
-            command = "whichkey.triggerKey";
-            args = "g";
-            when = "whichkeyVisible";
+            command = "-magit.refresh";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/";
           }
-          # Jujutsu: <leader>jj for jjui
           {
-            key = "j";
-            command = "whichkey.triggerKey";
-            args = "j";
-            when = "whichkeyVisible";
+            key = "g";
+            command = "vspacecode.showMagitRefreshMenu";
+            when = "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/";
           }
-          # Terminal toggle with <leader>t
+          # Easy navigation in quick open/QuickPick
           {
-            key = "t";
-            command = "whichkey.triggerKey";
-            args = "t";
-            when = "whichkeyVisible";
+            key = "ctrl+j";
+            command = "workbench.action.quickOpenSelectNext";
+            when = "inQuickOpen";
           }
-          # Escape to close maximized terminal
           {
-            key = "escape";
-            command = "workbench.action.closePanel";
-            when = "terminalFocus && isTerminalPaneOpen";
+            key = "ctrl+k";
+            command = "workbench.action.quickOpenSelectPrevious";
+            when = "inQuickOpen";
+          }
+          # Easy navigation in suggestion/intellisense
+          # Cannot be added to package.json because of conflict with vim's default bindings
+          {
+            key = "ctrl+j";
+            command = "selectNextSuggestion";
+            when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+          }
+          {
+            key = "ctrl+k";
+            command = "selectPrevSuggestion";
+            when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+          }
+          {
+            key = "ctrl+l";
+            command = "acceptSelectedSuggestion";
+            when = "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus";
+          }
+          # Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
+          # Cannot be added to package.json because of conflict with vim's default bindings
+          {
+            key = "ctrl+j";
+            command = "showNextParameterHint";
+            when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
+          }
+          {
+            key = "ctrl+k";
+            command = "showPrevParameterHint";
+            when = "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible";
+          }
+          # Easy navigation in code action
+          {
+            key = "ctrl+j";
+            command = "selectNextCodeAction";
+            when = "codeActionMenuVisible";
+          }
+          {
+            key = "ctrl+k";
+            command = "selectPrevCodeAction";
+            when = "codeActionMenuVisible";
+          }
+          {
+            key = "ctrl+l";
+            command = "acceptSelectedCodeAction";
+            when = "codeActionMenuVisible";
+          }
+          # Add ctrl+h/l to navigate in file browser
+          {
+            key = "ctrl+h";
+            command = "file-browser.stepOut";
+            when = "inFileBrowser";
+          }
+          {
+            key = "ctrl+l";
+            command = "file-browser.stepIn";
+            when = "inFileBrowser";
           }
         ];
       };
