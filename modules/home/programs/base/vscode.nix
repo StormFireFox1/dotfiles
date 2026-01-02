@@ -39,6 +39,8 @@ in
             bazelbuild.vscode-bazel
             # VSpaceCode
             vspacecode.vspacecode
+            # Editorconfig
+            editorconfig.editorconfig
           ])
           ++ (with pkgs.vscode-marketplace; [
             anthropic.claude-code
