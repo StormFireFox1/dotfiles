@@ -87,7 +87,7 @@ in
                 };
               };
             };
-            key = "d";
+            key = "space";
             modifier = "super";
             filter_by = [ ];
             hide_filtered = false;
