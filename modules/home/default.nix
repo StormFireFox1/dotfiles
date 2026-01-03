@@ -27,6 +27,7 @@ in
   config = {
     home = {
       packages = with pkgs; [
+        _1password-cli
         claude-code
         nerd-fonts.symbols-only
         adwaita-icon-theme

@@ -65,6 +65,7 @@ in
           "workbench.startupEditor" = "None";
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.iconTheme" = "catppuccin-mocha";
+          "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
 

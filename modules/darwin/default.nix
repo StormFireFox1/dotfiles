@@ -35,6 +35,14 @@ in
     shell = pkgs.zsh;
   };
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    vollkorn
+    fira-code
+    jetbrains-mono
+  ];
+
   environment = {
     systemPath = [
       "/opt/homebrew/bin"
