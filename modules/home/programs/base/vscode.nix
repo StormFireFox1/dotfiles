@@ -6,6 +6,17 @@
 }:
 let
   cfg = config.fireflake.programs;
+  terminal_profiles = {
+    fish = {
+      path = "fish";
+    };
+    lazygit = {
+      path = "lazygit";
+    };
+    jjui = {
+      path = "jjui";
+    };
+  };
 in
 {
   config = lib.mkIf cfg.enable {
@@ -51,6 +62,7 @@ in
             vspacecode.whichkey
           ]);
         userSettings = {
+          "workbench.startupEditor" = "None";
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.iconTheme" = "catppuccin-mocha";
           "nix.enableLanguageServer" = true;
@@ -141,18 +153,10 @@ in
 
           # Fish as main shell
           "terminal.integrated.defaultProfile.linux" = "fish";
+          "terminal.integrated.defaultProfile.osx" = "fish";
           # Terminal profiles for lazygit and jjui
-          "terminal.integrated.profiles.linux" = {
-            fish = {
-              path = "fish";
-            };
-            lazygit = {
-              path = "lazygit";
-            };
-            jjui = {
-              path = "jjui";
-            };
-          };
+          "terminal.integrated.profiles.linux" = terminal_profiles;
+          "terminal.integrated.profiles.osx" = terminal_profiles;
           "vspacecode.bindingOverrides" = [
             {
               keys = "g.g";
