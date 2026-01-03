@@ -1,3 +1,1 @@
-function replace-history
-    echo -- $history[1]
-end
+echo -- $history[1]

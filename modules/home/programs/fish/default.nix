@@ -27,7 +27,7 @@ in
         builtins.map
           (pluginName: {
             name = pluginName;
-            src = builtins.getAttr pluginName pkgs.fishPlugins;
+            src = (builtins.getAttr pluginName pkgs.fishPlugins).src;
           })
           [
             "bass"
@@ -47,6 +47,7 @@ in
         };
         "fr" = "find-repo";
         "fro" = "find-repo-and-open";
+        "froc" = "find-repo-and-open-code";
         "ka" = "kubectl apply";
         "kc" = "kubectl create";
         "kd" = "kubectl describe";
