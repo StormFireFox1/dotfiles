@@ -16,10 +16,9 @@
 # }
 { lib, pkgs, config, ... }:
 let
-  inherit (lib) isAttrs attrsets.mapAttrs;
   add_body_to_function_set =  function_name: function_set: lib.attrsets.overrideExisting function_set { body = builtins.readFile ( lib.path.append ./functions "/${function_name}.fish"); };
 in
-  mapAttrs add_body_to_function_set
+  lib.attrsets.mapAttrs add_body_to_function_set
   {
     find-repo-and-open = {
       description = "Opens a NeoVim window on the selected repo.";
