@@ -45,6 +45,10 @@
     nix-homebrew = {
       url = "github:zhaofengli/nix-homebrew";
     };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -56,6 +60,7 @@
       home-manager,
       darwin,
       nix-homebrew,
+      treefmt-nix,
       ...
     }@inputs:
     let
@@ -156,8 +161,13 @@
           inherit system;
           config.allowUnfree = true;
         };
+        treefmt = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       {
+        formatter = treefmt.config.build.wrapper;
+        checks = {
+          formatting = treefmt.config.build.check self;
+        };
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nixfmt-tree

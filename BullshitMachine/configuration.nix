@@ -42,7 +42,10 @@ in
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
     extraOptions = ''
       experimental-features = nix-command flakes

@@ -14,28 +14,36 @@
 #   The required "body" parameter is pulled from the files automatically
 #   by this file.
 # }
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
-  add_body_to_function_set =  function_name: function_set: lib.attrsets.overrideExisting function_set { body = builtins.readFile ( lib.path.append ./functions "/${function_name}.fish"); };
+  add_body_to_function_set =
+    function_name: function_set:
+    lib.attrsets.overrideExisting function_set {
+      body = builtins.readFile (lib.path.append ./functions "/${function_name}.fish");
+    };
 in
-  lib.attrsets.mapAttrs add_body_to_function_set
-  {
-    find-repo-and-open = {
-      description = "Opens a NeoVim window on the selected repo.";
-    };
-    find-repo-and-open-code = {
-      description = "Opens a VSCode window on the selected repo.";
-    };
-    find-repo = {
-      description = "cd's to the selected repo.";
-    };
-    replace-history = {
-      description = "Returns the last item in the history of the shell.";
-    };
-    select-repo = {
-      description = "Fuzzy searched for Git repos under ~/Repos and returns the selected path.";
-    };
-    slides = {
-      description = "Opens a Presenterm from the main Obsidian vault.";
-    };
-  }
+lib.attrsets.mapAttrs add_body_to_function_set {
+  find-repo-and-open = {
+    description = "Opens a NeoVim window on the selected repo.";
+  };
+  find-repo-and-open-code = {
+    description = "Opens a VSCode window on the selected repo.";
+  };
+  find-repo = {
+    description = "cd's to the selected repo.";
+  };
+  replace-history = {
+    description = "Returns the last item in the history of the shell.";
+  };
+  select-repo = {
+    description = "Fuzzy searched for Git repos under ~/Repos and returns the selected path.";
+  };
+  slides = {
+    description = "Opens a Presenterm from the main Obsidian vault.";
+  };
+}
