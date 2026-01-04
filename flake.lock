@@ -88,26 +88,6 @@
         "type": "github"
       }
     },
-    "charmbracelet-nur": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1766866676,
-        "narHash": "sha256-vVp2vo0dgxRYMoJNxcra9Kz6tFnrD1eBNSmG/3wsauw=",
-        "owner": "charmbracelet",
-        "repo": "nur",
-        "rev": "7f86f1d63f38e45195ae61acd083c90ad7624e01",
-        "type": "github"
-      },
-      "original": {
-        "owner": "charmbracelet",
-        "repo": "nur",
-        "type": "github"
-      }
-    },
     "claude-code-nix": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -1001,7 +981,6 @@
       "inputs": {
         "agenix": "agenix",
         "catppuccin": "catppuccin",
-        "charmbracelet-nur": "charmbracelet-nur",
         "claude-code-nix": "claude-code-nix",
         "darwin": "darwin_2",
         "flake-utils": "flake-utils_2",
