@@ -13,10 +13,6 @@
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    charmbracelet-nur = {
-      url = "github:charmbracelet/nur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     claude-code-nix = {
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,7 +73,6 @@
         agenix.homeManagerModules.default
         inputs.catppuccin.homeModules.catppuccin
         inputs.nix-doom-emacs-unstraightened.homeModule
-        inputs.charmbracelet-nur.homeModules.crush
         inputs.hyprshell.homeModules.hyprshell
         {
           nixpkgs.overlays = [
