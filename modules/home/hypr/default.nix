@@ -26,6 +26,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      kdePackages.dolphin
+    ];
     gtk = {
       enable = true;
       colorScheme = "dark";

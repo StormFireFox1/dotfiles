@@ -19,6 +19,7 @@ in
       settings = {
         "$mod" = "SUPER";
         "$terminal" = "kitty";
+	"$fileManager" = "dolphin";
         "$menu" = "wofi --show drun --allow-images";
         monitor = [
           "DP-3,2560x1440@144,0x0,1"
