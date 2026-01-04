@@ -18,6 +18,7 @@ in
       };
       shellIntegration.enableFishIntegration = true;
       settings = {
+        cursor_trail = 3;
         background_opacity = 0.9;
         shell = "${pkgs.fish}/bin/fish";
         confirm_os_window_close = 0;
