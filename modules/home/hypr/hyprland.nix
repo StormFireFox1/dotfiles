@@ -192,19 +192,19 @@ in
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
         ];
-        windowrulev2 = [
+        windowrule = [
           # Ignore maximize requests from apps. You'll probably like this.
-          "suppressevent maximize, class:.*"
+          "match:class .*, suppress_event maximize"
           # Fix some dragging issues with XWayland
-          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+          "match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0, no_focus on"
           # Fix dragging with FL Studio
-          "nofocus, class:^(FL64.exe)$, title:^()$"
-          "noinitialfocus, xwayland:1"
+          "match:class ^(FL64.exe)$, match:title ^()$, no_focus on"
+          "match:xwayland 1, no_initial_focus on"
           # Fix Flameshot issues
-          "move 0 0,class:(flameshot),title:(flameshot)"
-          "pin,class:(flameshot),title:(flameshot)"
-          "fullscreenstate,class:(flameshot),title:(flameshot)"
-          "float,class:(flameshot),title:(flameshot)"
+          "match:class flameshot, match:title flameshot, move 0 0"
+          "match:class flameshot, match:title flameshot, pin on"
+          "match:class flameshot, match:title flameshot, fullscreen_state 0 2"
+          "match:class flameshot, match:title flameshot, float on"
         ];
       };
     };

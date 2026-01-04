@@ -45,7 +45,10 @@ in
     };
     programs.gh-dash.enable = true;
     programs.nushell.enable = true;
-    programs.zsh.enable = true;
+    programs.zsh = {
+      enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
+    };
     programs.carapace = {
       enable = true;
       enableNushellIntegration = true;
