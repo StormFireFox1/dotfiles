@@ -11,7 +11,7 @@ let
     "k" = "up";
     "l" = "right";
   };
-  workspaces = builtins.map toString (lib.lists.range 1 9);
+  workspaces = builtins.map toString (lib.lists.range 0 9);
 in
 {
   services.aerospace = {
