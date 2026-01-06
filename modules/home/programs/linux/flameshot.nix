@@ -14,6 +14,7 @@ in
       settings = {
         General = {
           useGrimAdapter = true;
+          disabledGrimWarning = true;
         };
       };
     };
