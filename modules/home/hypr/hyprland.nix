@@ -11,6 +11,20 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      slurp
+      grim 
+      wl-clipboard
+    ];
+    # Screenshot utility.
+    home.file.".local/bin/wl-screencap-shortcut" = {
+      enable = true;
+      executable = true;
+      text = ''
+      #!/usr/bin/env bash
+      slurp | grim -g - - | tee ~/Pictures/Screeenshots/$(date +%s).png | wl-copy
+      '';
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -112,6 +126,7 @@ in
           "$mod, F, fullscreen,"
           "$mod SHIFT, Q, exit,"
           "$mod, E, exec, $fileManager"
+          "$mod SHIFT, x, exec, wl-screencap-shortcut"
           "$mod, V, togglefloating,"
           "$mod, P, pseudo, # dwindle"
           "$mod SHIFT, P, togglesplit, # dwindle"
@@ -185,6 +200,11 @@ in
           # Fix dragging with FL Studio
           "nofocus, class:^(FL64.exe)$, title:^()$"
           "noinitialfocus, xwayland:1"
+          # Fix Flameshot issues
+          "move 0 0,class:(flameshot),title:(flameshot)"
+          "pin,class:(flameshot),title:(flameshot)"
+          "fullscreenstate,class:(flameshot),title:(flameshot)"
+          "float,class:(flameshot),title:(flameshot)"
         ];
       };
     };

@@ -49,6 +49,9 @@ in
       username = cfg.username;
       homeDirectory = if isDarwin then "/Users/${cfg.username}" else "/home/${cfg.username}";
       stateVersion = "25.05";
+      sessionPath = [
+        "$HOME/.local/bin"
+      ];
     };
     xdg = {
       enable = true;
