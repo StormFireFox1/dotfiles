@@ -40,7 +40,6 @@ in
             ms-python.python
             # C/C++
             llvm-vs-code-extensions.vscode-clangd
-            ms-vscode.cpptools
             hashicorp.terraform
             redhat.vscode-yaml
             ms-azuretools.vscode-docker
@@ -48,8 +47,12 @@ in
             myriad-dreamin.tinymist
             ms-kubernetes-tools.vscode-kubernetes-tools
             bazelbuild.vscode-bazel
-            # VSpaceCode
+            # VSpaceCode + dependencies
+            vscodevim.vim
             vspacecode.vspacecode
+            vspacecode.whichkey
+            kahole.magit
+            bodil.file-browser
             # Editorconfig
             editorconfig.editorconfig
           ])
@@ -57,24 +60,24 @@ in
             anthropic.claude-code
             # Jujutsu
             jjk.jjk
-            # Vim + Which-key
-            vscodevim.vim
-            vspacecode.whichkey
+            # VSpaceCode dependencies missing from Nixpkgs
+            jacobdufault.fuzzy-search
           ]);
         userSettings = {
-          "workbench.startupEditor" = "None";
+          "workbench.startupEditor" = "none";
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.iconTheme" = "catppuccin-mocha";
+          "chat.disableAIFeatures" = true;
           "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
 
           # Vim settings
-          "vim.leader" = "<space>";
           "vim.useSystemClipboard" = true;
           "vim.hlsearch" = true;
           "vim.incsearch" = true;
           "vim.smartcase" = true;
+          "vim.foldfix" = true;
           "vim.useCtrlKeys" = true;
           "vim.handleKeys" = {
             "<C-a>" = false;
@@ -98,6 +101,12 @@ in
                 "<leader>"
                 "s"
               ];
+            }
+            {
+              before = [
+                "K"
+              ];
+              commands = [{ command = "editor.action.showDefinitionPreviewHover"; }] ;
             }
           ];
           "vim.visualModeKeyBindings" = [
@@ -159,6 +168,40 @@ in
           "terminal.integrated.profiles.linux" = terminal_profiles;
           "terminal.integrated.profiles.osx" = terminal_profiles;
           "vspacecode.bindingOverrides" = [
+            {
+              keys = "o";
+              name = "+Open";
+              type = "bindings";
+              icon = "go-to-file";
+              bindings = [
+                # TODO: Fix this to actually spawn a terminal window on the right.
+                # Technically not what I want right now.
+                {
+                  key = "T";
+                  name = "Open terminal (split)";
+                  type = "commands";
+                  icon = "terminal";
+                  commands = [
+                    "workbench.action.splitEditor"
+                    "workbench.action.terminal.new"
+                  ];
+                }
+              ];
+            }
+            {
+              keys = " ";
+              name = "Open files";
+              type = "command";
+              icon = "file";
+              command = "workbench.action.quickOpen";
+            }
+            {
+              keys = "K";
+              name = "Comands...";
+              type = "command";
+              icon = "rocket";
+              command = "workbench.action.showCommands";
+            }
             {
               keys = "g.g";
               name = "Open Lazygit";
