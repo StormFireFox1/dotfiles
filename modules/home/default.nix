@@ -28,22 +28,23 @@ in
     home = {
       packages = with pkgs; [
         _1password-cli
-        claude-code
-        nerd-fonts.symbols-only
         adwaita-icon-theme
-        emacs-lsp-booster
-        uutils-findutils
-        uutils-diffutils
-        uutils-coreutils-noprefix
+        claude-code
         dua
         dust
+        emacs-lsp-booster
+	fastfetch
         gitnr
         hyperfine
-        xh
-        python3
-        nil
         jq
         neovim
+        nerd-fonts.symbols-only
+        nil
+        python3
+        uutils-coreutils-noprefix
+        uutils-diffutils
+        uutils-findutils
+        xh
       ];
 
       username = cfg.username;
