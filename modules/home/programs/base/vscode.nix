@@ -62,6 +62,8 @@ in
             jjk.jjk
             # VSpaceCode dependencies missing from Nixpkgs
             jacobdufault.fuzzy-search
+            # Yanker for Github permalinks
+            hogashi.vscode-copy-github-permalink
           ]);
         userSettings = {
           "workbench.startupEditor" = "none";
@@ -106,7 +108,7 @@ in
               before = [
                 "K"
               ];
-              commands = [{ command = "editor.action.showDefinitionPreviewHover"; }] ;
+              commands = [ { command = "editor.action.showDefinitionPreviewHover"; } ];
             }
           ];
           "vim.visualModeKeyBindings" = [
@@ -206,15 +208,24 @@ in
               keys = "g.g";
               name = "Open Lazygit";
               type = "command";
+              icon = "git-branch";
               command = "workbench.action.terminal.newWithProfile";
               args = {
                 profileName = "lazygit";
               };
             }
             {
+              keys = "g.y";
+              name = "Copy GitHub Permalink";
+              type = "command";
+              icon = "github";
+              command = "copy-github-permalink.activate";
+            }
+            {
               keys = "j.j";
               name = "Open jjui";
               type = "command";
+              icon = "git-branch";
               command = "workbench.action.terminal.newWithProfile";
               args = {
                 profileName = "jjui";

@@ -13,7 +13,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       slurp
-      grim 
+      grim
       wl-clipboard
     ];
     # Screenshot utility.
@@ -21,8 +21,8 @@ in
       enable = true;
       executable = true;
       text = ''
-      #!/usr/bin/env bash
-      slurp | grim -g - - | tee ~/Pictures/Screeenshots/$(date +%s).png | wl-copy
+        #!/usr/bin/env bash
+        slurp | grim -g - - | tee ~/Pictures/Screeenshots/$(date +%s).png | wl-copy
       '';
     };
     wayland.windowManager.hyprland = {

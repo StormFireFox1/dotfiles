@@ -337,11 +337,13 @@ in
     22
     80
     443
+    42201
   ];
   networking.firewall.allowedUDPPorts = [
     22
     80
     443
+    42201
   ];
   networking.interfaces.eno2.wakeOnLan.enable = true;
   # Or disable the firewall altogether.

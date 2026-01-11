@@ -31,12 +31,33 @@ in
           sign-on-push = true;
         };
         colors = {
-          "diff removed token" = { fg = "bright red"; bg = "#400000"; underline = false; };
-          "diff added token" = { fg = "bright green"; bg = "#003000"; underline = false; };
+          "diff removed token" = {
+            fg = "bright red";
+            bg = "#400000";
+            underline = false;
+          };
+          "diff added token" = {
+            fg = "bright green";
+            bg = "#003000";
+            underline = false;
+          };
         };
         aliases = {
-          tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
-          rebase-all = ["rebase" "-s" "roots(trunk()..mutable())" "-d" "trunk()"];
+          tug = [
+            "bookmark"
+            "move"
+            "--from"
+            "heads(::@- & bookmarks())"
+            "--to"
+            "@-"
+          ];
+          rebase-all = [
+            "rebase"
+            "-s"
+            "roots(trunk()..mutable())"
+            "-d"
+            "trunk()"
+          ];
         };
       };
     };
