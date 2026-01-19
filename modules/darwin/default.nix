@@ -41,6 +41,8 @@ in
     vollkorn
     fira-code
     jetbrains-mono
+    colima
+    docker
   ];
 
   environment = {
