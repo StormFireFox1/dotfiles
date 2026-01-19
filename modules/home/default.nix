@@ -2,12 +2,14 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 with lib;
 let
   cfg = config.fireflake;
   isDarwin = pkgs.stdenv.isDarwin;
+  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   imports = [
@@ -29,11 +31,10 @@ in
       packages = with pkgs; [
         _1password-cli
         adwaita-icon-theme
-        claude-code
         dua
         dust
         emacs-lsp-booster
-	fastfetch
+        fastfetch
         gitnr
         hyperfine
         jq

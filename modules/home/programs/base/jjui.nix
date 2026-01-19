@@ -25,12 +25,24 @@ in
         };
         custom_commands = {
           "move commit down" = {
-            key = ["J"];
-            command = ["rebase" "-r" "$change_id" "--insert-before" "$change_id-"];
+            key = [ "J" ];
+            command = [
+              "rebase"
+              "-r"
+              "$change_id"
+              "--insert-before"
+              "$change_id-"
+            ];
           };
           "move commit up" = {
-            key = ["K"];
-            command = ["rebase" "-r" "$change_id" "--insert-after" "$change_id+"];
+            key = [ "K" ];
+            command = [
+              "rebase"
+              "-r"
+              "$change_id"
+              "--insert-after"
+              "$change_id+"
+            ];
           };
         };
       };

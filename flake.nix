@@ -13,10 +13,6 @@
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    claude-code-nix = {
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +39,14 @@
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    charm-nur = {
+      url = "github:charmbracelet/nur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -74,9 +78,9 @@
         inputs.catppuccin.homeModules.catppuccin
         inputs.nix-doom-emacs-unstraightened.homeModule
         inputs.hyprshell.homeModules.hyprshell
+        inputs.charm-nur.homeModules.crush
         {
           nixpkgs.overlays = [
-            inputs.claude-code-nix.overlays.default
             inputs.nix-vscode-extensions.overlays.default
           ];
         }

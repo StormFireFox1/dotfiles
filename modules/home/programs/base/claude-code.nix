@@ -11,13 +11,10 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    programs.opencode = {
+    programs.claude-code = {
       enable = true;
-      package = inputs.llm-agents.packages.${system}.opencode;
+      package = inputs.llm-agents.packages.${system}.claude-code;
       enableMcpIntegration = true;
-      settings = {
-        theme = "catppuccin-macchiato";
-      };
     };
   };
 }
