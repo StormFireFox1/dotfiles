@@ -37,6 +37,7 @@ in
         fastfetch
         gitnr
         hyperfine
+        kubectl
         jq
         neovim
         nerd-fonts.symbols-only
