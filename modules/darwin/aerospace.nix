@@ -40,6 +40,12 @@ in
         )
         // builtins.listToAttrs (
           builtins.map (workspace: {
+            name = "alt-${workspace}";
+            value = "workspace ${workspace}";
+          }) workspaces
+        )
+        // builtins.listToAttrs (
+          builtins.map (workspace: {
             name = "alt-shift-${workspace}";
             value = "move-node-to-workspace ${workspace}";
           }) workspaces
