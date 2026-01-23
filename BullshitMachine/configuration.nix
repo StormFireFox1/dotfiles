@@ -219,6 +219,7 @@ in
     rclone
     ripgrep
     rustc
+    ryubing
     samba
     signal-desktop
     simple-scan
