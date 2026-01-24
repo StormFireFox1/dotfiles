@@ -184,8 +184,7 @@ in
                   type = "commands";
                   icon = "terminal";
                   commands = [
-                    "workbench.action.splitEditor"
-                    "workbench.action.terminal.new"
+                    "workbench.action.createTerminalEditorSide"
                   ];
                 }
               ];
