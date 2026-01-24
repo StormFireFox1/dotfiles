@@ -51,8 +51,10 @@ in
           }) workspaces
         )
         // {
+          alt-f = "fullscreen";
           alt-tab = "workspace-back-and-forth";
           alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
+          alt-enter = "exec-and-forget kitty --single-instance /Users/${config.system.primaryUser}";
         };
     };
   };

@@ -171,8 +171,6 @@
         };
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            nixfmt-tree
-            nixfmt-rfc-style
             agenix.packages.${system}.default
             nh
             home-manager.packages.${system}.default
