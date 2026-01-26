@@ -46,6 +46,12 @@ in
         "root"
         "@wheel"
       ];
+      trusted-substituters = [
+        "s3://nix?endpoint=s3.matei.lol&scheme=https&region=us-west-1"
+      ];
+      trusted-public-keys = [
+        "cache.nix.matei.lol-1:0WG5OX49ly+JBwkuu0P+tLDcWZC1oWPmiowZgcl+p+k="
+      ];
     };
     extraOptions = ''
       experimental-features = nix-command flakes
