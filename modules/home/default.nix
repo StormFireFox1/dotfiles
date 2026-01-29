@@ -31,6 +31,7 @@ in
       packages = with pkgs; [
         _1password-cli
         adwaita-icon-theme
+        bun
         dua
         dust
         emacs-lsp-booster
