@@ -58,4 +58,9 @@ in
     pathsToLink = [ "/Applications" ];
   };
   programs.fish.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    podman
+    qemu
+  ];
 }
