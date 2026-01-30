@@ -9,6 +9,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Personal fork of Attic until Nix 2.31 support is merged in.
+    attic = {
+      url = "github:StormFireFox1/attic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +66,7 @@
       darwin,
       nix-homebrew,
       treefmt-nix,
+      attic,
       ...
     }@inputs:
     let
