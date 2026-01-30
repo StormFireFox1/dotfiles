@@ -14,9 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # NOTE: Pinning to before hyprpm was enabled
-      # until https://github.com/hyprwm/Hyprland/pull/13048 lands.
-      url = "github:hyprwm/Hyprland/8f547c6fa089f91e7577947c426f692397e9a5cb";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {

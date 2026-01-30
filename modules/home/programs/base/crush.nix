@@ -14,23 +14,6 @@ in
     programs.crush = {
       enable = true;
       package = inputs.llm-agents.packages.${system}.crush;
-      settings = {
-        lsp = {
-          go = {
-            command = "gopls";
-            enabled = true;
-          };
-          nix = {
-            command = "nil";
-            enabled = true;
-          };
-        };
-        options = {
-          tui = {
-            compact_mode = true;
-          };
-        };
-      };
     };
   };
 }
