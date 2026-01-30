@@ -16,4 +16,8 @@ in
     bullshitMachine
     stormPrism
   ];
+  "AtticCacheNetrc.age".publicKeys = users ++ [
+    bullshitMachine
+    stormPrism
+  ];
 }

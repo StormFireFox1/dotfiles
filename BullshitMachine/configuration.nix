@@ -46,12 +46,15 @@ in
         "root"
         "@wheel"
       ];
-      trusted-substituters = [
-        "s3://nix?endpoint=s3.matei.lol&scheme=https&region=us-west-1"
+      substituters = [
+        "https://attic.nix.matei.lol/stormhub"
+        "https://attic.nix.matei.lol/dotfiles"
       ];
-      trusted-public-keys = [
-        "cache.nix.matei.lol-1:0WG5OX49ly+JBwkuu0P+tLDcWZC1oWPmiowZgcl+p+k="
+      trusted-public-keys = [        
+        "dotfiles:7wa3AXQHghAeU6xxYRkQFxxYe2STmxpc83r2Bk5fbFk="
+        "stormhub:XNNi+rfycudWZKjB1M31qfjOwz0YsGAgwNZa65vbpAs="
       ];
+      netrc-file = config.age.secrets.AtticCacheNetrc.path;
     };
     extraOptions = ''
       experimental-features = nix-command flakes
