@@ -223,6 +223,7 @@ in
     obs-studio
     pavucontrol
     pdftk
+    piper
     playerctl
     prismlauncher
     pywal
@@ -289,6 +290,22 @@ in
     enable = true;
     enableSSHSupport = true;
   };
+
+  # Setup universal rebinds for keyboard.
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "escape";
+          };
+        };
+      };
+    };
+  };
+  services.ratbagd.enable = true;
 
   # List services that you want to enable:
 
