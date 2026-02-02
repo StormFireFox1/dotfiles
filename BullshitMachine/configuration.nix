@@ -31,6 +31,9 @@ in
     "cifs"
     "ntfs"
   ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+  ];
 
   networking.hostName = "BullshitMachine"; # Define your hostname.
   networking.extraHosts = ''
@@ -319,7 +322,9 @@ in
   };
   services.fail2ban.enable = true;
 
-  systemd.tmpfiles.rules = map (x: "d " + x + " 0755 ghost users -") mounts;
+  systemd.tmpfiles.rules = map (x: "d " + x + " 0755 ghost users -") mounts ++ [
+    "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
+  ];
   security.wrappers."mount.cifs" = {
     program = "mount.cifs";
     source = "${lib.getBin pkgs.cifs-utils}/bin/mount.cifs";
