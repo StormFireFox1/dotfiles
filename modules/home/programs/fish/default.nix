@@ -57,7 +57,7 @@ in
         "kssh" = "kitten ssh";
         "savemp3" = "yt-dlp -f bestaudio -x --audio-format m4a";
         "saveyt" = "yt-dlp -f bestvideo+bestaudio --recode-video mp4";
-        "tf" = "opentofu";
+        "tf" = "tofu";
         "tg" = "terragrunt";
       };
     };
