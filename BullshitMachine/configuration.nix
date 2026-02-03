@@ -9,13 +9,6 @@
   ...
 }:
 let
-  driveFolders = [
-    "Dumps"
-    "Backups"
-    "Media"
-    "Steam"
-  ];
-  mounts = map (x: "/mnt/StormDrive/" + x) driveFolders;
 in
 {
   imports = [
@@ -53,7 +46,7 @@ in
         "https://attic.nix.matei.lol/stormhub"
         "https://attic.nix.matei.lol/dotfiles"
       ];
-      trusted-public-keys = [        
+      trusted-public-keys = [
         "dotfiles:7wa3AXQHghAeU6xxYRkQFxxYe2STmxpc83r2Bk5fbFk="
         "stormhub:XNNi+rfycudWZKjB1M31qfjOwz0YsGAgwNZa65vbpAs="
       ];
