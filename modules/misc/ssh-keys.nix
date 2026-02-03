@@ -9,14 +9,14 @@
     with lib;
     with types;
     {
-      stormhub.ssh-keys = mkOption {
+      fireflake.sshKeys = mkOption {
         type = listOf str;
         description = "The SSH keychain for all keys owned by Storm_FireFox1";
       };
     };
 
-  config.stormhub = {
-    ssh-keys = [
+  config.fireflake = {
+    sshKeys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZIYxNcxuRY+U9v6zdhXRLLZI8dK/hqs+RjW8VcG/1NewvYfDHjXlHXlct6IBKKpaCwNoFTJgIM8/uvJqYWoSup7gIf5p60ofh2OYj1WjhdlzqgwK/k0J2QoiZKl8+ktwGm7d8aaeROiEyVCKl8Jm+HamrZz38yBwAMElnt2q+EpByZWJ+kd6+1ZpXzaJiCWTo9pZ7ewlXOFpH7XIS5IQl2JTlBH1Z7XA47K6ExvDYn9KF83S3CpmBX6WFL4tpdcHW6GM0E/30+itomLUt+l5xV5cWbvqaxsfyh3J8NsDuXt65XLBAAaImi3c86sj9JciptSUsPyblGdEwnOULN0+J810j4xUFsttgOhRi9s/boRoQeyHvsvNi3i0Psht02rpB6pRNSW+zClD0u10WBPKUfY7kilmpE6jeLGljxUX8HQACr5ExEhmwi8ioxrXwQJvLd2hcoE3R8fZci0NupaHP/rnB8B1DRzmG10NpsNLH9A50CfhRw3L8LS/zoENFdbaQXZiTAL02Gw89KNwOcUownNFMPKllWcbLYdzd73eDxrijHOPQzwScNkn5tJb7r7Mk3WXjdn0XOxjA2/Qo/SWh1ddpXdJFs7WndSLF+ngWbkbMtWFL2r6r+IJPQqY/pT9KAfH/mG4WKzkpEoKI/zcXwVgZ3vzXLFEZGog6lgTYyw== Storm_FireFox1 (Termius)"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAojWD+JmLRKgTR5UWzGIbsN5/Q/Z8R5Hz3bfsOroO+e Storm_FireFox1 (Windows)"
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJH5pTZBksQcsbM2jTB41edcCilUm3E+6xzI3PTFldAMuZAc43MntaZCd/Nv8leUQO5ja7LjOE6hvJEFDQVx5EA= Storm_FireFox1 (Secretive)"

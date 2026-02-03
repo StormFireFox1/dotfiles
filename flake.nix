@@ -142,10 +142,14 @@
         system = "x86_64-linux";
         modules = [
           agenix.nixosModules.default
-          ./lib/agenix.nix
-          ./BullshitMachine/hardware-configuration.nix
-          ./BullshitMachine/nvidia.nix
-          ./BullshitMachine/configuration.nix
+          ./modules/nixos/base
+          ./modules/nixos/bullshit-machine
+          {
+            fireflake.nixos = {
+              type = "desktop";
+              desktop.dedicatedGraphicsType = "nvidia";
+            };
+          }
         ];
       };
 
@@ -175,6 +179,7 @@
         };
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
+            git
             agenix.packages.${system}.default
             nh
             home-manager.packages.${system}.default

@@ -43,8 +43,6 @@ in
         neovim
         nerd-fonts.symbols-only
         nil
-        nodejs_25
-        python3
         uutils-coreutils-noprefix
         uutils-diffutils
         uutils-findutils

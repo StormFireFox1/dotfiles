@@ -9,6 +9,7 @@ let
 in
 {
   imports = [
+    ../misc/ssh-keys.nix
     ./homebrew.nix
     ./settings.nix
     ./aerospace.nix
@@ -39,6 +40,7 @@ in
   users.users.${primaryUser} = {
     home = "/Users/${primaryUser}";
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = config.fireflake.sshKeys;
   };
 
   fonts.packages = with pkgs; [

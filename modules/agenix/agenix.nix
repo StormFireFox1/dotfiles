@@ -18,7 +18,7 @@ in
     map (secretName: {
       name = secretName;
       value = {
-        file = ../secrets/${secretName}.age;
+        file = ../../secrets/${secretName}.age;
       }
       // secrets."${meta.hostname}"."${secretName}";
     }) (builtins.attrNames secrets."${meta.hostname}")
