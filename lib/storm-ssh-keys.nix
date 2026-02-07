@@ -24,6 +24,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/otR1RU2NB+ms53TTdgtOj5aEFXeuBExvAvr/F9NQN Storm_FireFox1 (ServerCat)"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFwkUBJcKSbuM66RqfYzfJjV7wfbXjh4PoaBzKhWRXpO Storm_FireFox1 (Prompt)"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINPgMul7XW0LoM3ADHGLu/Tkn+XQGKRD+gtcHxiW3IAn Storm_FireFox1 (Bullshit Machine)"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZ+/ic97nDX71YOCcENSo1S+eN5fsrRYbE51TWVSkB+ Storm_FireFox1 (Termix)"
     ];
   };
 }
