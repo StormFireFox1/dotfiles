@@ -40,6 +40,10 @@ in
       localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = true;
     };
+    programs.virt-manager.enable = true;
+    users.groups.libvirtd.members = [ "ghost" ];
+    virtualisation.libvirtd.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
     environment.sessionVariables = {
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
