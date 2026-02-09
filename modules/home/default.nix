@@ -43,6 +43,7 @@ in
         neovim
         nerd-fonts.symbols-only
         nil
+        stu
         uutils-coreutils-noprefix
         uutils-diffutils
         uutils-findutils
