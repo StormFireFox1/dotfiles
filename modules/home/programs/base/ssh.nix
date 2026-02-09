@@ -8,7 +8,11 @@ let
   cfg = config.fireflake.programs;
   isDarwin = pkgs.stdenv.isDarwin;
   tailscaleHosts = [
-    { name = "stormdrive"; user = "Storm_FireFox1"; port = 31187; }
+    {
+      name = "stormdrive";
+      user = "Storm_FireFox1";
+      port = 31187;
+    }
     { name = "bullshitmachine"; }
     { name = "gatekeeper"; }
     { name = "homander"; }
@@ -16,22 +20,28 @@ let
     { name = "man"; }
   ];
 
-  mkTailscaleHost = { name, user ? "ghost", port ? null }: {
-    inherit name;
-    value = {
-      inherit user;
-      hostname = "${name}.bobcat-gopher.ts.net";
-      forwardAgent = true;
-    } // lib.optionalAttrs (port != null) { inherit port; };
-  };
+  mkTailscaleHost =
+    {
+      name,
+      user ? "ghost",
+      port ? null,
+    }:
+    {
+      inherit name;
+      value = {
+        inherit user;
+        hostname = "${name}.bobcat-gopher.ts.net";
+        forwardAgent = true;
+      }
+      // lib.optionalAttrs (port != null) { inherit port; };
+    };
 in
 {
   config = lib.mkIf cfg.enable {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = builtins.listToAttrs (map mkTailscaleHost tailscaleHosts)
-      // {
+      matchBlocks = builtins.listToAttrs (map mkTailscaleHost tailscaleHosts) // {
         "*" = {
           extraOptions = lib.mkIf isDarwin {
             IdentityAgent = "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";

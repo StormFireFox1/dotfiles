@@ -1,6 +1,7 @@
 { meta, ... }:
 let
   secrets = {
+    rescue = { };
     BullshitMachine = {
       StormDriveSmbKey = {
         owner = "root";

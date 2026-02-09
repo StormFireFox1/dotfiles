@@ -8,7 +8,7 @@ let
   cfg = config.fireflake.programs;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && cfg.dev.enable) {
     home.sessionVariables.TERMINAL = "kitty";
     programs.kitty = {
       enable = true;

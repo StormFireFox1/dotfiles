@@ -30,6 +30,11 @@ in
       description = "Install programs specific for use in a Wayland desktop environment. These are evidently less useful on a MacBook.";
       default = false;
     };
+    dev.enable = mkOption {
+      type = types.bool;
+      description = "Enable programs needed for development, not basic shell functionality.";
+      default = true;
+    };
     enable = mkEnableOption "Enables common programs.";
   };
   config = mkIf cfg.enable {

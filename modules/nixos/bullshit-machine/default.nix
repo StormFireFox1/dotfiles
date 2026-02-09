@@ -17,6 +17,9 @@ let
   mounts = map (x: "/mnt/StormDrive/" + x) driveFolders;
 in
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
   config = lib.mkIf (cfg.type == "desktop") {
     systemd.tmpfiles.rules = map (x: "d " + x + " 0755 ghost users -") mounts;
     # Mount all local folders that are exposed by StormDrive.

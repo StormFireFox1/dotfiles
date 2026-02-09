@@ -13,7 +13,7 @@ in
 
   options.fireflake.nixos.desktop = {
     dedicatedGraphicsType = lib.mkOption {
-      type = types.oneOf [
+      type = types.enum [
         "nvidia"
         "amd"
       ];
@@ -25,126 +25,125 @@ in
     };
   };
 
-  config =
-    lib.mkIf (config.fireflake.nixos.type == "desktop") {
-      # Configure keymap in X11
-      services.xserver.xkb.layout = "us";
-      services.xserver.xkb.options = "eurosign:e,caps:escape";
-      services.displayManager.sddm.enable = true;
-      services.displayManager.sddm.wayland.enable = true;
-      services.libinput.enable = true;
-      fonts.packages = with pkgs; [
-        nerd-fonts.fira-code
-        vollkorn
-        fira-code
-      ];
-      hardware.bluetooth.enable = true;
+  config = lib.mkIf (config.fireflake.nixos.type == "desktop") {
+    # Configure keymap in X11
+    services.xserver.xkb.layout = "us";
+    services.xserver.xkb.options = "eurosign:e,caps:escape";
+    services.displayManager.sddm.enable = true;
+    services.displayManager.sddm.wayland.enable = true;
+    services.libinput.enable = true;
+    fonts.packages = with pkgs; [
+      nerd-fonts.fira-code
+      vollkorn
+      fira-code
+    ];
+    hardware.bluetooth.enable = true;
 
-      services.printing.enable = true;
-      services.gnome.gnome-keyring.enable = true;
-      services.pipewire = {
+    services.printing.enable = true;
+    services.gnome.gnome-keyring.enable = true;
+    services.pipewire = {
+      enable = true;
+      audio.enable = true;
+      pulse.enable = true;
+      alsa = {
         enable = true;
-        audio.enable = true;
-        pulse.enable = true;
-        alsa = {
-          enable = true;
-          support32Bit = true;
-        };
-        jack.enable = true;
+        support32Bit = true;
       };
-      services.blueman.enable = true;
+      jack.enable = true;
+    };
+    services.blueman.enable = true;
 
-      programs.fish.enable = true;
-      programs.firefox.enable = true;
-      programs.thunderbird.enable = true;
-      programs.hyprland = {
-        enable = true;
-        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-        portalPackage =
-          inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-        xwayland.enable = true;
-      };
-      programs._1password.enable = true;
-      programs._1password-gui = {
-        enable = true;
-        polkitPolicyOwners = [ "ghost" ];
-      };
+    programs.fish.enable = true;
+    programs.firefox.enable = true;
+    programs.thunderbird.enable = true;
+    programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
+    };
+    programs._1password.enable = true;
+    programs._1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "ghost" ];
+    };
 
-      users.users.ghost.extraGroups = [
-        "input"
-        "uinput"
-      ];
-      users.users.ghost.packages = with pkgs; [
-        discord
-        gimp
-        obs-studio
-        google-chrome
-        obsidian
-        prismlauncher
-        todoist
-        todoist-electron
-        signal-desktop
-        spotify
-        ryubing
-        vscode
-        gpu-screen-recorder
-        gpu-screen-recorder-gtk
-      ];
+    users.users.ghost.extraGroups = [
+      "input"
+      "uinput"
+    ];
+    users.users.ghost.packages = with pkgs; [
+      discord
+      gimp
+      obs-studio
+      google-chrome
+      obsidian
+      prismlauncher
+      todoist
+      todoist-electron
+      signal-desktop
+      spotify
+      ryubing
+      vscode
+      gpu-screen-recorder
+      gpu-screen-recorder-gtk
+    ];
 
-      services.avahi = {
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+      publish = {
         enable = true;
-        nssmdns4 = true;
-        openFirewall = true;
-        publish = {
-          enable = true;
-          userServices = true;
-          addresses = true;
-        };
+        userServices = true;
+        addresses = true;
       };
-      services.nextdns = {
-        enable = true;
-        arguments = [
-          "-config"
-          "d3c471"
-          "-cache-size"
-          "10MB"
-        ];
-      };
-      security.wrappers."mount.cifs" = {
-        program = "mount.cifs";
-        source = "${lib.getBin pkgs.cifs-utils}/bin/mount.cifs";
-        owner = "root";
-        group = "root";
-        setuid = true;
-      };
-      networking.interfaces.${cfg.wakeOnLanInterface}.wakeOnLan.enable = true;
-
-      environment.variables = {
-        "KITY_DISABLE_WAYLAND" = "0";
-      };
-      environment.etc = {
-        "1password/custom_allowed_browsers" = {
-          text = ''
-            firefox
-          '';
-          mode = "0755";
-        };
-      };
-      programs.gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-      environment.systemPackages = with pkgs; [
-        appimage-run
-        bottles
-        hyprlock
-        hyprpolkitagent
-        pavucontrol
-        pdftk
-        kitty
-        nextdns
-        qemu
-        quickemu
+    };
+    services.nextdns = {
+      enable = true;
+      arguments = [
+        "-config"
+        "d3c471"
+        "-cache-size"
+        "10MB"
       ];
     };
+    security.wrappers."mount.cifs" = {
+      program = "mount.cifs";
+      source = "${lib.getBin pkgs.cifs-utils}/bin/mount.cifs";
+      owner = "root";
+      group = "root";
+      setuid = true;
+    };
+    networking.interfaces.${cfg.wakeOnLanInterface}.wakeOnLan.enable = true;
+
+    environment.variables = {
+      "KITY_DISABLE_WAYLAND" = "0";
+    };
+    environment.etc = {
+      "1password/custom_allowed_browsers" = {
+        text = ''
+          firefox
+        '';
+        mode = "0755";
+      };
+    };
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    environment.systemPackages = with pkgs; [
+      appimage-run
+      bottles
+      hyprlock
+      hyprpolkitagent
+      pavucontrol
+      pdftk
+      kitty
+      nextdns
+      qemu
+      quickemu
+    ];
+  };
 }

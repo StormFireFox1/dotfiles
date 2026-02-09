@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  meta,
   ...
 }:
 let
@@ -11,6 +12,7 @@ let
 in
 {
   imports = [
+    ../../agenix
     ../../misc/ssh-keys.nix
     ./nix-settings.nix
     ./nvidia.nix
@@ -20,7 +22,7 @@ in
 
   options.fireflake.nixos = {
     timezone = lib.mkOption {
-      type = types.string;
+      type = types.str;
       description = "The timezone of the machine.";
       default = "America/Los_Angeles";
     };
@@ -41,10 +43,9 @@ in
       "btrfs"
       "cifs"
       "ntfs"
-      "zfs"
     ];
     # Support cross-compilation.
-    boot.binfmt.emulatedSystems = builtins.filter (x: x == pkgs.stdenv.hostPlatform.system) [
+    boot.binfmt.emulatedSystems = builtins.filter (x: x != pkgs.stdenv.hostPlatform.system) [
       "x86_64-linux"
       "aarch64-linux"
     ];
@@ -52,7 +53,7 @@ in
       "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
     ];
 
-    networking.hostName = config.meta.hostname;
+    networking.hostName = meta.hostname;
     networking.networkmanager.enable = true;
 
     time.timeZone = cfg.timezone;

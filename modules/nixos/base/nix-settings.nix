@@ -6,12 +6,21 @@
   ...
 }:
 let
+  cfg = config.fireflake.nixos.nix;
+  types = lib.types;
   personalNixCacheBuckets = {
-    stormhub = "stormhub:XNNi+rfycudWZKjB1M31qfjOwz0YsGAgwNZa65vbpAs=";
-    dotfiles = "dotfiles:7wa3AXQHghAeU6xxYRkQFxxYe2STmxpc83r2Bk5fbFk=";
+    "https://attic.nix.matei.lol/stormhub" = "stormhub:XNNi+rfycudWZKjB1M31qfjOwz0YsGAgwNZa65vbpAs=";
+    "https://attic.nix.matei.lol/dotfiles" = "dotfiles:7wa3AXQHghAeU6xxYRkQFxxYe2STmxpc83r2Bk5fbFk=";
   };
 in
 {
+  options.fireflake.nixos.nix = {
+    pullAtticCaches = lib.mkOption {
+      type = types.bool;
+      description = "Whether to pull in Attic binary caches for Nix configuration. You will almost always need this.";
+      default = true;
+    };
+  };
   config = {
     nix = {
       gc = {
@@ -25,14 +34,15 @@ in
           "root"
           "@wheel"
         ];
+      }
+      // lib.mkIf cfg.pullAtticCaches {
         substituters = builtins.attrNames personalNixCacheBuckets;
         trusted-public-keys = builtins.attrValues personalNixCacheBuckets;
         netrc-file = config.age.secrets.AtticCacheNetrc.path;
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
       };
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
     };
     nixpkgs.config.allowUnfree = true;
   };

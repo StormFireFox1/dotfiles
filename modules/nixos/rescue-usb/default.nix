@@ -20,6 +20,9 @@
 
   # Rescue and recovery packages
   environment.systemPackages = with pkgs; [
+    # Basic internet stuff
+    openssh
+
     # Disk partitioning
     gparted
     parted

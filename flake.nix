@@ -157,30 +157,37 @@
       nixosConfigurations.RescueUSB = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
-          meta = { hostname = "rescue"; };
+          meta = {
+            hostname = "rescue";
+          };
         };
         system = "x86_64-linux";
         modules = [
+          agenix.nixosModules.default
           ./modules/nixos/base
           ./modules/nixos/rescue-usb
           home-manager.nixosModules.home-manager
           {
             fireflake.nixos.type = "server";
+            fireflake.nixos.nix.pullAtticCaches = false;
 
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
-              users.ghost = { ... }: {
-                imports = commonHomeModules;
-                fireflake = {
-                  username = "ghost";
-                  backup.enable = false;
-                  hypr.enable = false;
-                  programs.enable = true;
-                  programs.wayland.enable = false;
+              users.ghost =
+                { ... }:
+                {
+                  imports = commonHomeModules;
+                  fireflake = {
+                    username = "ghost";
+                    backup.enable = false;
+                    hypr.enable = false;
+                    programs.enable = true;
+                    programs.wayland.enable = false;
+                    programs.dev.enable = false;
+                  };
                 };
-              };
             };
           }
         ];
