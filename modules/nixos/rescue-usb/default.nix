@@ -18,6 +18,9 @@
   # Force hostname for rescue environment
   networking.hostName = lib.mkForce "rescue";
 
+  # Force no autologin for Getty.
+  services.getty.autologinUser = lib.mkForce null;
+
   # Set relatively simple password.
   users.users.ghost.hashedPassword = "$6$VZ4m6Jd5B1RhYUL9$8XruTUiPJnkgZE7xBsFigYDAj1HKCgzMVKfbeP9a0tXe.Bnlcg5R3AJMfGdVYF4vfDqmh/xSfEbk3adpOKCDW1";
 
