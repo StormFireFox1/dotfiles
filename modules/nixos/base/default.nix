@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    ../misc/ssh-keys.nix
+    ../../misc/ssh-keys.nix
     ./nix-settings.nix
     ./nvidia.nix
     ./desktop.nix
@@ -25,7 +25,7 @@ in
       default = "America/Los_Angeles";
     };
     type = lib.mkOption {
-      type = types.oneOf [
+      type = types.enum [
         "desktop"
         "server"
       ];
@@ -48,7 +48,7 @@ in
       "x86_64-linux"
       "aarch64-linux"
     ];
-    security.tmpfiles.rules = [
+    systemd.tmpfiles.rules = [
       "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware"
     ];
 

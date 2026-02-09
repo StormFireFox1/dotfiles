@@ -20,13 +20,13 @@ in
       description = "Brand of dedicated graphics card installed in desktop machine.";
     };
     wakeOnLanInterface = lib.mkOption {
-      type = types.string;
+      type = types.str;
       description = "What network interface will be used to enable Wake-on-LAN support.";
     };
   };
 
   config =
-    lib.mkIf cfg.type == "desktop" {
+    lib.mkIf (config.fireflake.nixos.type == "desktop") {
       # Configure keymap in X11
       services.xserver.xkb.layout = "us";
       services.xserver.xkb.options = "eurosign:e,caps:escape";

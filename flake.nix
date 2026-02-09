@@ -148,6 +148,39 @@
             fireflake.nixos = {
               type = "desktop";
               desktop.dedicatedGraphicsType = "nvidia";
+              desktop.wakeOnLanInterface = "eno2";
+            };
+          }
+        ];
+      };
+
+      nixosConfigurations.RescueUSB = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          meta = { hostname = "rescue"; };
+        };
+        system = "x86_64-linux";
+        modules = [
+          ./modules/nixos/base
+          ./modules/nixos/rescue-usb
+          home-manager.nixosModules.home-manager
+          {
+            fireflake.nixos.type = "server";
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit inputs; };
+              users.ghost = { ... }: {
+                imports = commonHomeModules;
+                fireflake = {
+                  username = "ghost";
+                  backup.enable = false;
+                  hypr.enable = false;
+                  programs.enable = true;
+                  programs.wayland.enable = false;
+                };
+              };
             };
           }
         ];
@@ -184,6 +217,9 @@
             nh
             home-manager.packages.${system}.default
           ];
+        };
+        packages = pkgs.lib.optionalAttrs (system == "x86_64-linux") {
+          rescue-iso = self.nixosConfigurations.RescueUSB.config.system.build.isoImage;
         };
       }
     );
