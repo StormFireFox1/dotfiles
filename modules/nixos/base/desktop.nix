@@ -52,6 +52,7 @@ in
       jack.enable = true;
     };
     services.blueman.enable = true;
+    services.udisks2.enable = true;
 
     programs.fish.enable = true;
     programs.firefox.enable = true;
