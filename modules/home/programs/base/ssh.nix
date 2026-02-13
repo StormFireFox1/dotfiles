@@ -47,9 +47,9 @@ in
           #
           # Not sure I can bring Secretive into the NixOS fold; might just use identity files
           # with passwords.
-          extraOptions = lib.mkIf isDarwin {
+          extraOptions = if isDarwin then {
             IdentityAgent = "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-          } // lib.mkIf (!isDarwin) {
+          } else {
             IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
           };
         };
