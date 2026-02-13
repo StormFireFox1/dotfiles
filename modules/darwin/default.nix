@@ -15,19 +15,26 @@ in
     ./aerospace.nix
   ];
   nix = {
+    linux-builder = {
+      enable = true;
+      systems = [ "aarch64-linux" "x86_64-linux" ];
+      config = ({ pkgs, ...}: {
+        boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+      });
+    };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
     settings = {
+      trusted-users = [ "ghost" "root" ];
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      trusted-substituters = [
-        "s3://nix?endpoint=s3.matei.lol&scheme=https&region=us-west-1"
-      ];
-      trusted-public-keys = [
-        "cache.nix.matei.lol-1:0WG5OX49ly+JBwkuu0P+tLDcWZC1oWPmiowZgcl+p+k="
-      ];
     };
-    enable = false;
+    enable = true;
+    package = pkgs.lix;
   };
 
   nix-homebrew = {

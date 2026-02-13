@@ -24,6 +24,17 @@
   # Set relatively simple password.
   users.users.ghost.hashedPassword = "$6$VZ4m6Jd5B1RhYUL9$8XruTUiPJnkgZE7xBsFigYDAj1HKCgzMVKfbeP9a0tXe.Bnlcg5R3AJMfGdVYF4vfDqmh/xSfEbk3adpOKCDW1";
 
+  # Force OpenSSH to be open on a different port (31187)
+  # and have root login allowed. This permits nixos-anywhere
+  # to do its stuff.
+  services.openssh = {
+    ports = lib.mkForce [ 31187 ];
+    settings = {
+      PermitRootLogin = lib.mkForce "prohibit-password";
+      AllowUsers = [ "ghost" "root" ];
+    };
+  };
+
   # Rescue and recovery packages
   environment.systemPackages = with pkgs; [
     # Basic internet stuff
