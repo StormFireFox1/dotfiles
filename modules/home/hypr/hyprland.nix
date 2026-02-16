@@ -44,6 +44,7 @@ in
         exec-once = [
           "ashell"
           "hyprpaper"
+          "vicinae server"
         ];
         env = [
           "XCURSOR_SIZE,18"
@@ -122,6 +123,8 @@ in
           };
         };
         bind = [
+          # Launch Vicinae
+          "$mod, Space, exec, vicinae toggle"
           "$mod, Return, exec, $terminal"
           "$mod, W, killactive,"
           "$mod, F, fullscreen,"
@@ -192,6 +195,10 @@ in
           ", XF86AudioPause, exec, playerctl play-pause"
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
+        ];
+        layerrule = [
+          "blur on, ignore_alpha 0, match:namespace vicinae"
+          "no_anim on, match:namespace vicinae"
         ];
         windowrule = [
           # Ignore maximize requests from apps. You'll probably like this.

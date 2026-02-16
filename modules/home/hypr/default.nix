@@ -17,6 +17,7 @@ in
     ./hyprpaper.nix
     ./hyprshell.nix
     ./hyprsunset.nix
+    ./vicinae.nix
   ];
 
   options = {

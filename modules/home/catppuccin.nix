@@ -14,6 +14,7 @@
     nushell.enable = true;
     gh-dash.enable = true;
     thunderbird.enable = true;
+    vicinae.enable = true;
     yazi.enable = true;
     zellij.enable = true;
   };
