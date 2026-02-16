@@ -26,11 +26,6 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprshell = {
-      url = "github:H3rmt/hyprshell/hyprshell-release";
-      inputs.hyprland.follows = "hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +78,6 @@
         agenix.homeManagerModules.default
         inputs.catppuccin.homeModules.catppuccin
         inputs.nix-doom-emacs-unstraightened.homeModule
-        inputs.hyprshell.homeModules.hyprshell
         inputs.charm-nur.homeModules.crush
         {
           nixpkgs.overlays = [

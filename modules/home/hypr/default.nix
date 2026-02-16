@@ -15,7 +15,6 @@ in
     ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./hyprshell.nix
     ./hyprsunset.nix
     ./vicinae.nix
   ];
