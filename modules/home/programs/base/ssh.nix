@@ -18,6 +18,14 @@ let
     { name = "homander"; }
     { name = "jonkler"; }
     { name = "man"; }
+    {
+      name = "farmhouse";
+      port = 31187;
+    }
+    {
+      name = "siren"; 
+      port = 31187;
+    }
   ];
 
   mkTailscaleHost =
