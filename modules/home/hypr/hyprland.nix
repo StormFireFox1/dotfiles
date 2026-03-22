@@ -133,7 +133,7 @@ in
           "$mod SHIFT, x, exec, wl-screencap-shortcut"
           "$mod, V, togglefloating,"
           "$mod, P, pseudo, # dwindle"
-          "$mod SHIFT, P, togglesplit, # dwindle"
+          "$mod SHIFT, P, layoutmsg, togglesplit, # dwindle"
           # Move focus with mod + h/j/k/l
           # Arrow keys also work.
           "$mod, H, movefocus, l"

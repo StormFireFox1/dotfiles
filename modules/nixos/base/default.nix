@@ -118,7 +118,7 @@ in
       gnumake
       home-manager
       killall
-      neofetch
+      fastfetch
       neovim
       nh
       nixos-anywhere

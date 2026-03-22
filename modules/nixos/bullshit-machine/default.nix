@@ -55,8 +55,8 @@ in
       cifs-utils
       piper
       winetricks
-      wineWowPackages.stable
-      wineWowPackages.staging
+      wineWow64Packages.stable
+      wineWow64Packages.staging
       yabridge
       yabridgectl
     ];
