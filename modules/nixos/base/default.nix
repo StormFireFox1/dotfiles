@@ -38,10 +38,12 @@ in
   config = {
     # Use the systemd-boot EFI boot loader.
     boot.loader = {
-      grub.enable = true;
-      device = "nodev";
-      useOSProber = true;
-      efiSupport = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        useOSProber = true;
+        efiSupport = true;
+      };
     };
     boot.loader.efi.canTouchEfiVariables = true;
     boot.supportedFilesystems = [
@@ -121,6 +123,7 @@ in
       gcc
       git
       gnumake
+      grub2
       home-manager
       killall
       fastfetch

@@ -33,6 +33,21 @@ in
         in
         [ "${automount_opts},credentials=${config.age.secrets.StormDriveSmbKey.path},uid=1000,gid=100" ];
     });
+    # Add entry for Bazzite.
+    boot.loader.grub.extraEntries = ''
+    menuentry "Bazzite" {
+      set root=(hd1,gpt1)
+      chainloader /efi/fedora/grubx64.efi
+    }
+    '';
+    # Add rule to allow no sudo when rebooting into Bazzite.
+    security.sudo.extraRules = [{
+      users = [ "ghost" ];
+      commands = [
+        { command = "${pkgs.grub2}/bin/grub-reboot"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/reboot"; options = [ "NOPASSWD" ]; }
+      ];
+    }];
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -59,6 +74,10 @@ in
       wineWow64Packages.staging
       yabridge
       yabridgectl
+      (writeShellScriptBin "synthesize-bazzite" ''
+        ${grub2}/bin/grub-reboot "Bazzite"
+        reboot
+      '')
     ];
   };
 }
