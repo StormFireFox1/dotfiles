@@ -83,8 +83,8 @@ in
       yabridge
       yabridgectl
       (writeShellScriptBin "synthesize-bazzite" ''
-        ${grub2}/bin/grub-reboot "Bazzite"
-        reboot
+        sudo ${grub2}/bin/grub-reboot "Bazzite"
+        exec sudo reboot
       '')
     ];
   };
