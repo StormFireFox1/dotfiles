@@ -21,14 +21,14 @@ in
             blur_passes = 2;
           }
           {
-            monitor = "HDMI-A-2";
+            monitor = "DP-4";
             path = "screenshot";
             blur_passes = 2;
           }
         ];
 
         image = {
-          monitor = "HDMI-A-2";
+          monitor = "DP-3";
           size = "300";
           path = "${config.xdg.configHome}/hypr/pictures/Profile.png";
           position = "0, 300";
@@ -40,7 +40,7 @@ in
 
         label = [
           {
-            monitor = "HDMI-A-2";
+            monitor = "DP-3";
             text = "$TIME";
             color = "rgba(242, 243, 244, 0.75)";
             font_size = 95;
@@ -51,7 +51,7 @@ in
           }
           {
 
-            monitor = "HDMI-A-2";
+            monitor = "DP-3";
             text = ''cmd[update:1000] echo $(date +"%A, %B %d")'';
             color = "rgba(242, 243, 244, 0.75)";
             font_size = 22;
@@ -64,7 +64,7 @@ in
         ];
 
         input-field = {
-          monitor = "HDMI-A-2";
+          monitor = "DP-3";
           size = "200,50";
           outline_thickness = 2;
           dots_size = 0.2;

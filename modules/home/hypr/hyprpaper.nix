@@ -20,8 +20,8 @@ in
           "${config.xdg.configHome}/hypr/wallpapers/Boat.png"
         ];
         wallpaper = [
-          "DP-3,${config.xdg.configHome}/hypr/wallpapers/Mountain.png"
-          "HDMI-A-2,${config.xdg.configHome}/hypr/wallpapers/Boat.png"
+          "DP-4,${config.xdg.configHome}/hypr/wallpapers/Mountain.png"
+          "DP-3,${config.xdg.configHome}/hypr/wallpapers/Boat.png"
           ",${config.xdg.configHome}/hypr/wallpapers/Mountain.png"
         ];
       };
