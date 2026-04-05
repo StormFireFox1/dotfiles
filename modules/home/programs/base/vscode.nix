@@ -57,7 +57,6 @@ in
             editorconfig.editorconfig
           ])
           ++ (with pkgs.vscode-marketplace; [
-            anthropic.claude-code
             # Jujutsu
             jjk.jjk
             # VSpaceCode dependencies missing from Nixpkgs

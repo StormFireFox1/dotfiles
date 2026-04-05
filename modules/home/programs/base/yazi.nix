@@ -14,6 +14,7 @@ in
       enableFishIntegration = true;
       enableNushellIntegration = true;
       enableZshIntegration = true;
+      shellWrapperName = "y";
       plugins =
         with pkgs.yaziPlugins;
         lib.genAttrs [

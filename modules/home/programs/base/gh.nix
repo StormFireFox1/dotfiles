@@ -11,14 +11,9 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.dev.enable) {
-    programs.opencode = {
+    programs.gh = {
       enable = true;
-      package = inputs.llm-agents.packages.${system}.opencode;
-      enableMcpIntegration = true;
-      settings = {};
-      tui = {
-        theme = "catppuccin-macchiato";
-      };
+      gitCredentialHelper.enable = true;
     };
   };
 }
