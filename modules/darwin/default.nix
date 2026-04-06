@@ -17,17 +17,26 @@ in
   nix = {
     linux-builder = {
       enable = true;
-      systems = [ "aarch64-linux" "x86_64-linux" ];
-      config = ({ pkgs, ...}: {
-        boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-      });
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+      config = (
+        { pkgs, ... }:
+        {
+          boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+        }
+      );
     };
     gc = {
       automatic = true;
       options = "--delete-older-than 30d";
     };
     settings = {
-      trusted-users = [ "ghost" "root" ];
+      trusted-users = [
+        "ghost"
+        "root"
+      ];
       experimental-features = [
         "nix-command"
         "flakes"

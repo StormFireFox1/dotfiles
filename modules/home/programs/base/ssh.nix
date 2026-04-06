@@ -23,7 +23,7 @@ let
       port = 31187;
     }
     {
-      name = "siren"; 
+      name = "siren";
       port = 31187;
     }
   ];
@@ -55,11 +55,15 @@ in
           #
           # Not sure I can bring Secretive into the NixOS fold; might just use identity files
           # with passwords.
-          extraOptions = if isDarwin then {
-            IdentityAgent = "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-          } else {
-            IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
-          };
+          extraOptions =
+            if isDarwin then
+              {
+                IdentityAgent = "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
+              }
+            else
+              {
+                IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
+              };
         };
         "ns" = {
           user = "rares";

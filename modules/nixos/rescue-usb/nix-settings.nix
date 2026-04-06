@@ -9,6 +9,9 @@
     trusted-public-keys = lib.mkForce [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
-    trusted-users = lib.mkForce [ "ghost" "nixos" ];
+    trusted-users = lib.mkForce [
+      "ghost"
+      "nixos"
+    ];
   };
 }

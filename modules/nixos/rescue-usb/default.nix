@@ -28,10 +28,17 @@
   # and have root login allowed. This permits nixos-anywhere
   # to do its stuff.
   services.openssh = {
-    ports = lib.mkForce [ 22 31187 ];
+    ports = lib.mkForce [
+      22
+      31187
+    ];
     settings = {
       PermitRootLogin = lib.mkForce "prohibit-password";
-      AllowUsers = [ "ghost" "nixos" "root" ];
+      AllowUsers = [
+        "ghost"
+        "nixos"
+        "root"
+      ];
     };
   };
 
