@@ -67,7 +67,7 @@ a quick list, with links to each relevant program/feature:
   relevant.
 - [Hyprland](https://hypr.land/) environment, with
   [ashell](https://malpenzibo.github.io/ashell/) and
-  [Hyprshell](https://github.com/H3rmt/hyprshell) for a simple enough tiling DE on Linux.
+  [Vicinae](https://www.vicinae.com/) for a simple enough tiling DE on Linux.
 - [Fish shell](https://fishshell.com/) with custom functions and [Starship
   prompt](https://starship.rs/)
 - [Doom Emacs](https://github.com/doomemacs/doomemacs), with all its packages
@@ -80,10 +80,7 @@ a quick list, with links to each relevant program/feature:
     that it worked, though.
 - [VS Code](https://code.visualstudio.com/) replicating my existing Doom
   Emacs/LazyVim setups using the power of
-  [vscode-which-key](https://github.com/VSpaceCode/vscode-which-key).
-  - I am aware of [VSpaceCode](https://vspacecode.github.io/)'s existence. I
-    may switch to it in the near future, for now I've just begun exploring a
-    foray into using VSCode full-time.
+  [VSpaceCode](https://vspacecode.github.io/).
 - A collection of CLI tools I love:
   [ripgrep](https://github.com/BurntSushi/ripgrep),
   [fzf](https://github.com/junegunn/fzf), [bat](https://github.com/sharkdp/bat),
