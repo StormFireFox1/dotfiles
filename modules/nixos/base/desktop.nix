@@ -26,6 +26,13 @@ in
   };
 
   config = lib.mkIf (config.fireflake.nixos.type == "desktop") {
+    nixpkgs.overlays = [
+      (_: prev: {
+        openldap = prev.openldap.overrideAttrs {
+          doCheck = !prev.stdenv.hostPlatform.isi686;
+        };
+      })
+    ];
     # Configure keymap in X11
     services.xserver.xkb.layout = "us";
     services.xserver.xkb.options = "eurosign:e,caps:escape";
