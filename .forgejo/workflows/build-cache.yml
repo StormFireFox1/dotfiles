@@ -55,4 +55,4 @@ jobs:
             > /tmp/hm-out-paths
 
       - name: Push linux home-manager configuration to Attic
-        run: attic push dotfiles $(cat /tmp/hm-out-paths)
+        run: attic push dotfiles $(cat /tmp/hm-out-paths) -j 3
