@@ -23,9 +23,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Attic client
-        run: nix profile install nixpkgs#attic-client
+        run: nix profile add nixpkgs#attic-client
 
-      - name: Configure Attic
+      - name: Configure Attic as Nix cache
         run: |
           mkdir -p ~/.config/attic
           cat > ~/.config/attic/config.toml << EOF
@@ -33,6 +33,7 @@ jobs:
           endpoint = "https://attic.nix.matei.lol"
           token = "$ATTIC_TOKEN"
           EOF
+          attic use dotfiles
         env:
           ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
 
