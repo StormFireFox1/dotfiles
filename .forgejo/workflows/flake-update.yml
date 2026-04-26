@@ -40,8 +40,8 @@ jobs:
           )
       - name: Trigger build workflow
 	run: |
-	  curl -X POST \
-	    -H "Authorization: token ${FORGEJO_TOKEN}" \
-	    -H "Content-Type: application/json" \
-	    "${FORGEJO_API_URL}/repos/${FORGEJO_REPOSITORY}/actions/workflows/build-cache.yaml/dispatches" \
-	    -d '{"ref": "${{ forgejo.ref_name }}"}'
+          curl -X POST \
+            -H "Authorization: token ${FORGEJO_TOKEN}" \
+            -H "Content-Type: application/json" \
+            "${FORGEJO_API_URL}/repos/${FORGEJO_REPOSITORY}/actions/workflows/build-cache.yaml/dispatches" \
+            -d '{"ref": "${{ forgejo.ref_name }}"}'
