@@ -39,7 +39,7 @@ jobs:
             git push
           )
       - name: Trigger build workflow
-	run: |
+        run: |
           curl -X POST \
             -H "Authorization: token ${FORGEJO_TOKEN}" \
             -H "Content-Type: application/json" \
