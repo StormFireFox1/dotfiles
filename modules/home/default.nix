@@ -48,7 +48,7 @@ in
         uutils-diffutils
         uutils-findutils
         xh
-	attic-client
+        attic-client
       ];
 
       username = cfg.username;
