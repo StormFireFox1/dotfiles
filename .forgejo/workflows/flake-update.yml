@@ -1,0 +1,32 @@
+name: Flake Update
+
+on:
+  schedule:
+    - cron: '0 9 * * 0'  # Every Sunday at 9 AM UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: nixos-latest
+    permissions:
+      contents: write
+    env:
+      NIX_CONFIG: "experimental-features = nix-command flakes"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update flake inputs
+        run: nix flake update
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "forgejo-actions[bot]"
+          git config user.email "actions@git.matei.lol"
+          git diff --quiet flake.lock || (
+            git add flake.lock &&
+            git commit -m "flake: update inputs" &&
+            git push
+          )

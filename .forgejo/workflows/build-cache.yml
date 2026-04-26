@@ -1,0 +1,49 @@
+name: Build and Cache
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: nixos-latest
+    env:
+      NIX_CONFIG: "experimental-features = nix-command flakes"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Attic client
+        run: nix profile install nixpkgs#attic-client
+
+      - name: Configure Attic
+        run: |
+          mkdir -p ~/.config/attic
+          cat > ~/.config/attic/config.toml << EOF
+          [servers.dotfiles]
+          endpoint = "https://attic.nix.matei.lol"
+          token = "$ATTIC_TOKEN"
+          EOF
+        env:
+          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+
+      - name: Build BullshitMachine NixOS configuration
+        run: |
+          nix build .#nixosConfigurations.BullshitMachine.config.system.build.toplevel \
+            --no-link \
+            --print-out-paths \
+            > /tmp/nixos-out-paths
+
+      - name: Push BullshitMachine to Attic
+        run: attic push dotfiles $(cat /tmp/nixos-out-paths)
+
+      - name: Build linux home-manager configuration
+        run: |
+          nix build '.#homeConfigurations."ghost@BullshitMachine".activationPackage' \
+            --no-link \
+            --print-out-paths \
+            > /tmp/hm-out-paths
+
+      - name: Push linux home-manager configuration to Attic
+        run: attic push dotfiles $(cat /tmp/hm-out-paths)
