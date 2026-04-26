@@ -31,6 +31,7 @@ in
       packages = with pkgs; [
         _1password-cli
         adwaita-icon-theme
+        attic-client
         bun
         dua
         dust
@@ -38,8 +39,8 @@ in
         fastfetch
         gitnr
         hyperfine
-        kubectl
         jq
+        kubectl
         neovim
         nerd-fonts.symbols-only
         nil
@@ -48,7 +49,6 @@ in
         uutils-diffutils
         uutils-findutils
         xh
-        attic-client
       ];
 
       username = cfg.username;
