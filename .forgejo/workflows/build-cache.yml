@@ -11,6 +11,14 @@ jobs:
     env:
       NIX_CONFIG: "experimental-features = nix-command flakes"
     steps:
+      - name: Install Node.js
+        run: |
+          mkdir -p ~/.local/bin
+          nix build -I nixpkgs=channel:nixos-unstable nixpkgs#nodejs_24 -o ~/.local/nodejs
+          ln -sf ~/.local/nodejs/bin/node ~/.local/bin/node
+          ln -sf ~/.local/nodejs/bin/npm ~/.local/bin/npm
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
       - name: Checkout
         uses: actions/checkout@v4
 
