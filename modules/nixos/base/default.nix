@@ -117,6 +117,7 @@ in
       croc
       doggo
       dunst
+      fastfetch
       fd
       fish
       fzf
@@ -126,17 +127,17 @@ in
       grub2
       home-manager
       killall
-      fastfetch
       neovim
       nh
       nixos-anywhere
       nushell
+      podman-compose
       rclone
       ripgrep
       samba
       sqlite
-      step-cli
       starship
+      step-cli
       tealdeer
       tmux
       tree-sitter
