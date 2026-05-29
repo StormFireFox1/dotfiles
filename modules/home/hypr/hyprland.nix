@@ -27,6 +27,7 @@ in
     };
     wayland.windowManager.hyprland = {
       enable = true;
+      configType = "hyprlang";
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       portalPackage =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
@@ -56,7 +57,7 @@ in
           resize_on_border = true;
           allow_tearing = false;
           layout = "dwindle";
-          "col.active_border" = "$red $peach 45deg";
+          "col.active_border" = "rgba(00f38ba8) rgba(00fab387) 45deg";
         };
         decoration = {
           rounding = 10;

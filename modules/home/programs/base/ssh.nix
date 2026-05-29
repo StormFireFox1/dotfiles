@@ -49,21 +49,17 @@ in
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = builtins.listToAttrs (map mkTailscaleHost tailscaleHosts) // {
+      settings = builtins.listToAttrs (map mkTailscaleHost tailscaleHosts) // {
         "*" = {
           # HACK: (Matei) temporary kludge for Secretive until I figure out what I do here.
           #
           # Not sure I can bring Secretive into the NixOS fold; might just use identity files
           # with passwords.
-          extraOptions =
+          IdentityAgent =
             if isDarwin then
-              {
-                IdentityAgent = "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh";
-              }
+              "~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
             else
-              {
-                IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
-              };
+              "${config.home.homeDirectory}/.ssh/id_ed25519";
         };
         "ns" = {
           user = "rares";

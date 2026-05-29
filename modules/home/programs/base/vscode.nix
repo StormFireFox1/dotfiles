@@ -25,9 +25,6 @@ in
       profiles.default = {
         extensions =
           (with pkgs.vscode-extensions; [
-            # Theme
-            catppuccin.catppuccin-vsc
-            catppuccin.catppuccin-vsc-icons
             # Nix
             jnoortheen.nix-ide
             # Markdown

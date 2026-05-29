@@ -16,9 +16,6 @@ in
       package = inputs.llm-agents.packages.${system}.opencode;
       enableMcpIntegration = true;
       settings = { };
-      tui = {
-        theme = "catppuccin-macchiato";
-      };
     };
   };
 }

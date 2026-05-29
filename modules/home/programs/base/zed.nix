@@ -39,14 +39,6 @@ in
       ];
 
       userSettings = {
-        # Theme
-        "theme" = {
-          "mode" = "dark";
-          "dark" = "Catppuccin Mocha";
-          "light" = "Catppuccin Latte";
-        };
-        "icon_theme" = "Catppuccin Mocha";
-
         # Font
         "buffer_font_family" = "JetBrainsMono Nerd Font Mono";
         "buffer_font_size" = 14;

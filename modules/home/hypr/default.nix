@@ -32,10 +32,6 @@ in
     gtk = {
       enable = true;
       colorScheme = "dark";
-      iconTheme = {
-        name = "Papirus";
-        package = pkgs.papirus-icon-theme;
-      };
       cursorTheme = {
         name = "Bibata Modern Classic";
         package = pkgs.bibata-cursors;
