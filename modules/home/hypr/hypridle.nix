@@ -8,7 +8,7 @@ let
   cfg = config.fireflake.hypr;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && cfg.shellType == "hypr") {
     services.hypridle = {
       enable = true;
       settings = {

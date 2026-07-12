@@ -9,7 +9,7 @@ let
   cfg = config.fireflake.hypr;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && cfg.shellType == "hypr") {
     programs.hyprlock = {
       enable = true;
       package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
