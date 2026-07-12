@@ -23,7 +23,10 @@ in
     fireflake.hypr = {
       enable = mkEnableOption "Enables the Hyprland environment. Should only be enabled on Linux.";
       shellType = mkOption {
-        type = types.enum ["hypr" "noctalia"];
+        type = types.enum [
+          "hypr"
+          "noctalia"
+        ];
         default = "hypr";
         example = "noctalia";
         description = "The desktop shell type to use. 'hypr' installs Hyprlock, Hypridle, Hyprpaper, Ashell and Hyprsunset. 'noctalia' uses the Noctalia shell configuration. This may become the default in the future.";
@@ -34,6 +37,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       kdePackages.dolphin
+      hyprshutdown
     ];
     gtk = {
       enable = true;

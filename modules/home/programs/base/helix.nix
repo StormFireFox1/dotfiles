@@ -9,7 +9,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    programs.helix= {
+    programs.helix = {
       enable = true;
     };
   };

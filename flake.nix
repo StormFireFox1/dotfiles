@@ -30,6 +30,10 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +87,7 @@
         inputs.catppuccin.homeModules.catppuccin
         inputs.nix-doom-emacs-unstraightened.homeModule
         inputs.charm-nur.homeModules.crush
+        inputs.noctalia.homeModules.default
         {
           nixpkgs.overlays = [
             inputs.nix-vscode-extensions.overlays.default
@@ -101,7 +106,10 @@
               fireflake = {
                 username = "ghost";
                 backup.enable = true;
-                hypr.enable = true;
+                hypr = {
+                  enable = true;
+                  shellType = "hypr";
+                };
                 programs = {
                   enable = true;
                   wayland.enable = true;
