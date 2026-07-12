@@ -56,6 +56,19 @@ in
         ];
       }
     ];
+    # Auto-discover AirPlay/RAOP receivers.
+    services.pipewire.raopOpenFirewall = true;
+    services.pipewire.extraConfig.pipewire."10-raop-discover" = {
+      context.modules = [
+        {
+          name = "libpipewire-module-raop-discover";
+          args = {
+            "raop.discover-local" = true;
+          };
+        }
+      ];
+    };
+
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
