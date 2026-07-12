@@ -108,7 +108,7 @@
                 backup.enable = true;
                 hypr = {
                   enable = true;
-                  shellType = "hypr";
+                  shellType = "noctalia";
                 };
                 programs = {
                   enable = true;

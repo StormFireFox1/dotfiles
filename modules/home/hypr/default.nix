@@ -16,6 +16,7 @@ in
     ./hyprlock.nix
     ./hyprpaper.nix
     ./hyprsunset.nix
+    ./noctalia.nix
     ./vicinae.nix
   ];
 
@@ -46,6 +47,13 @@ in
         name = "Bibata Modern Classic";
         package = pkgs.bibata-cursors;
       };
+    };
+    xdg.configFile."hypr/wallpapers" = {
+      source = ./wallpapers;
+      recursive = true;
+    };
+    xdg.configFile."hypr/pictures/Profile.png" = {
+      source = ./pictures/Profile.png;
     };
   };
 }

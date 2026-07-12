@@ -26,10 +26,5 @@ in
         ];
       };
     };
-
-    xdg.configFile."hypr/wallpapers" = {
-      source = ./wallpapers;
-      recursive = true;
-    };
   };
 }

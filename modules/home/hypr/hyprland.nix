@@ -101,13 +101,15 @@ in
             };
           };
           decoration = {
-            rounding = 10;
+            rounding = 20;
+            rounding_power = 2;
             active_opacity = 1.0;
             inactive_opacity = 1.0;
             shadow = {
               enabled = true;
               range = 4;
               render_power = 3;
+              color = "0xee1a1a1a";
             };
             blur = {
               enabled = true;
@@ -153,6 +155,21 @@ in
             disabled = true;
           }
         ];
+        # Persist 10 workspaces, 5 on the left, 5 in the middle.
+        workspace_rule = builtins.concatLists (
+          builtins.genList (i: [
+            {
+              workspace = "${toString (i + 1)}";
+              monitor = "DP-3";
+              persistent = true;
+            }
+            {
+              workspace = "${toString (i + 6)}";
+              monitor = "DP-4";
+              persistent = true;
+            }
+          ]) 5
+        );
         env = convertToHyprEnv [
           "XCURSOR_SIZE=18"
           "HYPRCURSOR_SIZE=18"
@@ -260,14 +277,14 @@ in
           {
             leaf = "windowsIn";
             enabled = true;
-            speed = 4.1;
+            speed = 1;
             spring = "easy";
             style = "popin 87%";
           }
           {
             leaf = "windowsOut";
             enabled = true;
-            speed = 1.49;
+            speed = 1;
             bezier = "linear";
             style = "popin 87%";
           }
@@ -359,10 +376,13 @@ in
               ]
             else
               [
-                (bind "${mainMod} + Space" (dsp.exec "panel-toggle launcher"))
+                (bind "${mainMod} + Space" (dsp.exec (noctaliaIpc "panel-toggle launcher")))
                 (bind "${mainMod} + S" (dsp.exec (noctaliaIpc "panel-toggle control-center")))
                 (bind "${mainMod} + comma" (dsp.exec (noctaliaIpc "settings-toggle")))
                 (bind "${mainMod} + CTRL + Q" (dsp.exec (noctaliaIpc "session lock")))
+                (bind "${mainMod} + CTRL + Space" (dsp.exec (noctaliaIpc "panel-toggle launcher /emo")))
+                (bind "${mainMod} + CTRL + C" (dsp.exec (noctaliaIpc "panel-toggle clipboard")))
+
                 (bind "XF86AudioRaiseVolume" (dsp.exec (noctaliaIpc "volume-up")))
                 (bind "XF86AudioLowerVolume" (dsp.exec (noctaliaIpc "volume-down")))
                 (bind "XF86AudioMute" (dsp.exec (noctaliaIpc "volume-mute")))
@@ -377,7 +397,7 @@ in
             (bind "${mainMod} + Return" (dsp.exec "kitty"))
             (bind "${mainMod} + SHIFT + Q" (dsp.exec "hyprshutdown"))
             (bind "${mainMod} + E" (dsp.exec "dolphin"))
-            (bind "${mainMod} + SHIFT + x" (dsp.exec "wl-screencap-shortcut"))
+            (bind "${mainMod} + SHIFT + x" (dsp.exec (noctaliaIpc "screenshot-region")))
             # Move focus with mod + h/j/k/l
             # Arrow keys also work.
             (bind "${mainMod} + H" (lua ''hl.dsp.focus({ direction = "l" })''))
@@ -422,7 +442,7 @@ in
                   lua "hl.dsp.window.move({ workspace = ${toString ws}, follow = false})"
                 ))
               ]
-            ) 9
+            ) 10
           ));
         layer_rule =
           if (cfg.shellType == "hypr") then
@@ -444,60 +464,89 @@ in
               }
             ]
           else
-            [ ];
-        window_rule = [
-          # Ignore maximize requests from apps.
-          {
-            match = {
-              class = ".*";
-            };
-            suppress_event = "maximize";
-          }
-          # Fix some dragging issues with XWayland
-          {
-            match = {
-              class = "^$";
-              title = "^$";
-              xwayland = true;
-              float = true;
-              fullscreen = false;
-              pin = false;
-            };
-            no_focus = true;
-          }
-          # Fix dragginw with FL Studio.
-          {
-            match = {
-              class = "^(FL64.exe)$";
-              title = "^()$";
-            };
-            no_focus = true;
-          }
-          {
-            match = {
-              xwayland = true;
-            };
-            no_initial_focus = true;
-          }
-
-        ]
-        ++ (
-          if cfg.shellType == "hypr" then
             [
               {
+                name = "noctalia";
                 match = {
-                  class = "flameshot";
-                  title = "flameshot";
+                  namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$";
                 };
-                move = "0 0";
-                float = true;
-                pin = true;
-                fullscreen_state = "0 2";
+                no_anim = true;
+                ignore_alpha = 0.5;
+                blur = true;
+                blur_popups = true;
               }
-            ]
-          else
-            [ ]
-        );
+            ];
+        window_rule =
+          (
+            if cfg.shellType == "noctalia" then
+              [
+                {
+                  match = {
+                    class = "dev.noctalia.Noctalia";
+                  };
+                  float = true;
+                  size = [
+                    1080
+                    920
+                  ];
+                }
+              ]
+            else
+              [ ]
+          )
+          ++ [
+            # Ignore maximize requests from apps.
+            {
+              match = {
+                class = ".*";
+              };
+              suppress_event = "maximize";
+            }
+            # Fix some dragging issues with XWayland
+            {
+              match = {
+                class = "^$";
+                title = "^$";
+                xwayland = true;
+                float = true;
+                fullscreen = false;
+                pin = false;
+              };
+              no_focus = true;
+            }
+            # Fix dragginw with FL Studio.
+            {
+              match = {
+                class = "^(FL64.exe)$";
+                title = "^()$";
+              };
+              no_focus = true;
+            }
+            {
+              match = {
+                xwayland = true;
+              };
+              no_initial_focus = true;
+            }
+
+          ]
+          ++ (
+            if cfg.shellType == "hypr" then
+              [
+                {
+                  match = {
+                    class = "flameshot";
+                    title = "flameshot";
+                  };
+                  move = "0 0";
+                  float = true;
+                  pin = true;
+                  fullscreen_state = "0 2";
+                }
+              ]
+            else
+              [ ]
+          );
       };
     };
     home.sessionVariables = {
