@@ -143,8 +143,7 @@ in
     };
     environment.systemPackages = with pkgs; [
       appimage-run
-      # Temporarily disabling Bottles due to `patool` not building.
-      # bottles
+      bottles
       hyprlock
       hyprpolkitagent
       pavucontrol
