@@ -53,6 +53,10 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    paseo = {
+      url = "github:getpaseo/paseo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     charm-nur = {
       url = "github:charmbracelet/nur";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,6 +73,7 @@
       darwin,
       nix-homebrew,
       treefmt-nix,
+      paseo,
       attic,
       ...
     }@inputs:
@@ -148,6 +153,7 @@
         system = "x86_64-linux";
         modules = [
           agenix.nixosModules.default
+          paseo.nixosModules.default
           ./modules/nixos/base
           ./modules/nixos/bullshit-machine
           {
