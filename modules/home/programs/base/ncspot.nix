@@ -9,8 +9,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    programs.ncspot = {
-      enable = true;
-    };
+    programs.ncspot.enable = true;
   };
 }

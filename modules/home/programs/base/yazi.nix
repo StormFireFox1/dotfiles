@@ -31,7 +31,7 @@ in
           "rich-preview"
           "starship"
           "wl-clipboard"
-        ] (pluginName: builtins.getAttr pluginName pkgs.yaziPlugins);
+        ] (pluginName: pkgs.yaziPlugins.${pluginName});
     };
   };
 }

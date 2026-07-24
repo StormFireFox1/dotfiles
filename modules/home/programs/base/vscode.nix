@@ -194,7 +194,7 @@ in
             }
             {
               keys = "K";
-              name = "Comands...";
+              name = "Commands...";
               type = "command";
               icon = "rocket";
               command = "workbench.action.showCommands";

@@ -29,20 +29,23 @@ in
         dates = "weekly";
         options = "--delete-older-than 30d";
       };
-      settings = {
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
-      }
-      // lib.mkIf cfg.pullAtticCaches {
-        substituters = builtins.attrNames personalNixCacheBuckets;
-        trusted-public-keys = builtins.attrValues personalNixCacheBuckets;
-        netrc-file = config.age.secrets.AtticCacheNetrc.path;
-      };
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
+      settings = lib.mkMerge [
+        {
+          trusted-users = [
+            "root"
+            "@wheel"
+          ];
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+        }
+        (lib.mkIf cfg.pullAtticCaches {
+          substituters = builtins.attrNames personalNixCacheBuckets;
+          trusted-public-keys = builtins.attrValues personalNixCacheBuckets;
+          netrc-file = config.age.secrets.AtticCacheNetrc.path;
+        })
+      ];
     };
     nixpkgs.config.allowUnfree = true;
   };

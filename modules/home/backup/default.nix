@@ -5,29 +5,27 @@
   home,
   ...
 }:
-with lib;
 let
   cfg = config.fireflake.backup;
+  types = lib.types;
 in
 {
   options = {
     fireflake.backup = {
-      enable = mkEnableOption "Enables backups to the personal StormDrive. You will have to assign the Borg repo name yourself, as well as run 'borg init' on it with the same password";
-      repoName = mkOption {
+      enable = lib.mkEnableOption "Enables backups to the personal StormDrive. You will have to assign the Borg repo name yourself, as well as run 'borg init' on it with the same password";
+      repoName = lib.mkOption {
         type = types.str;
         default = "BullshitMachine";
         description = "The name of the BorgBackup repo.";
       };
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     age.secrets.BorgBackupKey = {
       file = ../../../secrets/BorgBackupKey.age;
       path = "${config.home.homeDirectory}/.config/borgmatic.d/key";
     };
-    services.borgmatic = {
-      enable = true;
-    };
+    services.borgmatic.enable = true;
     programs.borgmatic = {
       enable = true;
       backups = {

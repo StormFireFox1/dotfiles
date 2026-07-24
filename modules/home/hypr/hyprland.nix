@@ -514,7 +514,7 @@ in
               };
               no_focus = true;
             }
-            # Fix dragginw with FL Studio.
+            # Fix dragging with FL Studio.
             {
               match = {
                 class = "^(FL64.exe)$";

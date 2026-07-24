@@ -4,9 +4,9 @@
   config,
   ...
 }:
-with lib;
 let
   cfg = config.fireflake.hypr;
+  types = lib.types;
 in
 {
   imports = [
@@ -22,8 +22,8 @@ in
 
   options = {
     fireflake.hypr = {
-      enable = mkEnableOption "Enables the Hyprland environment. Should only be enabled on Linux.";
-      shellType = mkOption {
+      enable = lib.mkEnableOption "Enables the Hyprland environment. Should only be enabled on Linux.";
+      shellType = lib.mkOption {
         type = types.enum [
           "hypr"
           "noctalia"
@@ -35,7 +35,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       kdePackages.dolphin
       hyprshutdown

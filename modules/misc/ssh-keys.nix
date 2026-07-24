@@ -5,15 +5,10 @@
   ...
 }:
 {
-  options =
-    with lib;
-    with types;
-    {
-      fireflake.sshKeys = mkOption {
-        type = listOf str;
-        description = "The SSH keychain for all keys owned by Storm_FireFox1";
-      };
-    };
+  options.fireflake.sshKeys = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    description = "The SSH keychain for all keys owned by Storm_FireFox1";
+  };
 
   config.fireflake = {
     sshKeys = [

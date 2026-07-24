@@ -7,7 +7,6 @@
 }:
 let
   cfg = config.fireflake.programs;
-  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   config = lib.mkIf (cfg.enable && cfg.dev.enable) {

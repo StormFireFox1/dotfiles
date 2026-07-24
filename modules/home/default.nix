@@ -5,11 +5,10 @@
   inputs,
   ...
 }:
-with lib;
 let
   cfg = config.fireflake;
   isDarwin = pkgs.stdenv.isDarwin;
-  system = pkgs.stdenv.hostPlatform.system;
+  types = lib.types;
 in
 {
   imports = [
@@ -20,7 +19,7 @@ in
     ./hypr
   ];
   options.fireflake = {
-    username = mkOption {
+    username = lib.mkOption {
       type = types.str;
       default = "ghost";
       description = "The username for the configuration.";
@@ -58,8 +57,6 @@ in
         "$HOME/.local/bin"
       ];
     };
-    xdg = {
-      enable = true;
-    };
+    xdg.enable = true;
   };
 }

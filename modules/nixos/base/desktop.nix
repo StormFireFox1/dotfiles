@@ -127,7 +127,7 @@ in
     networking.interfaces.${cfg.wakeOnLanInterface}.wakeOnLan.enable = true;
 
     environment.variables = {
-      "KITY_DISABLE_WAYLAND" = "0";
+      "KITTY_DISABLE_WAYLAND" = "0";
     };
     environment.etc = {
       "1password/custom_allowed_browsers" = {

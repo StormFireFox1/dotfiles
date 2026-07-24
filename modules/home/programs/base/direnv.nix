@@ -14,12 +14,8 @@ in
       enableNushellIntegration = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      mise = {
-        enable = true;
-      };
-      nix-direnv = {
-        enable = true;
-      };
+      mise.enable = true;
+      nix-direnv.enable = true;
     };
   };
 }

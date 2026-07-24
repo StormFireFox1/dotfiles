@@ -27,7 +27,7 @@ in
         builtins.map
           (pluginName: {
             name = pluginName;
-            src = (builtins.getAttr pluginName pkgs.fishPlugins).src;
+            src = pkgs.fishPlugins.${pluginName}.src;
           })
           [
             "bass"

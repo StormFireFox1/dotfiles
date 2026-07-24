@@ -15,7 +15,6 @@ let
     "Steam"
   ];
   mounts = map (x: "/mnt/StormDrive/" + x) driveFolders;
-  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   imports = [
@@ -84,12 +83,17 @@ in
       openFirewall = true;
       listenAddress = "0.0.0.0";
       inheritUserEnvironment = true;
-      hostnames = [".bobcat-gopher.ts.net" ".ts.storm" ".storm" ".matei.lol"];
+      hostnames = [
+        ".bobcat-gopher.ts.net"
+        ".ts.storm"
+        ".storm"
+        ".matei.lol"
+      ];
     };
     users.users.paseo = {
       shell = pkgs.zsh;
       packages = with pkgs; [
-        inputs.llm-agents.packages.${system}.opencode
+        inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
         gh
         python3
         fish
@@ -99,7 +103,7 @@ in
         ripgrep
       ];
     };
-    
+
     programs.virt-manager.enable = true;
     users.groups.libvirtd.members = [ "ghost" ];
     virtualisation.libvirtd.enable = true;
@@ -123,7 +127,7 @@ in
         sudo ${grub2}/bin/grub-reboot "Bazzite"
         exec sudo reboot
       '')
-      inputs.paseo.packages.${system}.desktop
+      inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system}.desktop
     ];
   };
 }

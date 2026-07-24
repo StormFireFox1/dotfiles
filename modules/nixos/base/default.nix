@@ -78,7 +78,7 @@ in
 
     security.polkit.enable = true;
 
-    # Define a user account. Don't fogget to set a password with ‘passwd’.
+    # Define a user account. Don't forget to set a password with 'passwd'.
     users.users = {
       ghost = {
         isNormalUser = true;

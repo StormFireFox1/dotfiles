@@ -82,7 +82,7 @@
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
-      darwin_pkgs = import nixpkgs {
+      darwinPkgs = import nixpkgs {
         system = "aarch64-darwin";
         config.allowUnfree = true;
       };
@@ -124,7 +124,7 @@
           ];
         };
         "ghost@StormPrism" = home-manager.lib.homeManagerConfiguration {
-          pkgs = darwin_pkgs;
+          pkgs = darwinPkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = commonHomeModules ++ [
             {

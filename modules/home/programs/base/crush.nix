@@ -7,13 +7,12 @@
 }:
 let
   cfg = config.fireflake.programs;
-  system = pkgs.stdenv.hostPlatform.system;
 in
 {
   config = lib.mkIf (cfg.enable && cfg.dev.enable) {
     programs.crush = {
       enable = true;
-      package = inputs.llm-agents.packages.${system}.crush;
+      package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.crush;
     };
   };
 }
