@@ -91,7 +91,6 @@
         agenix.homeManagerModules.default
         inputs.catppuccin.homeModules.catppuccin
         inputs.nix-doom-emacs-unstraightened.homeModule
-        inputs.charm-nur.homeModules.crush
         inputs.noctalia.homeModules.default
         {
           nixpkgs.overlays = [

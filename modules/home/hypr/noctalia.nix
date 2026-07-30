@@ -91,15 +91,16 @@ in
               enabled = false;
             };
             password_box = {
-              box_height = 64.0;
-              box_width = 512.0;
+              box_height = 229.0;
+              box_width = 810.0;
               cx = 1280.0;
-              cy = 944.0;
+              cy = 1054.0;
               output = "DP-3";
               rotation = 0.0;
               type = "login_box";
 
               settings = {
+                layout = "regular";
                 background_color = "surface_variant";
                 background_opacity = 0.88;
                 background_radius = 12.0;
@@ -109,6 +110,9 @@ in
                 show_keyboard_layout = true;
                 show_login_button = true;
                 show_password_hint = true;
+                show_media = true;
+                show_session_buttons = true;
+                show_weather = false;
               };
             };
 
