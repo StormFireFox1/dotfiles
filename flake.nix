@@ -61,6 +61,7 @@
       url = "github:charmbracelet/nur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
   };
 
   outputs =
@@ -75,6 +76,7 @@
       treefmt-nix,
       paseo,
       attic,
+      nix-flatpak,
       ...
     }@inputs:
     let
@@ -153,6 +155,7 @@
         modules = [
           agenix.nixosModules.default
           paseo.nixosModules.default
+          nix-flatpak.nixosModules.nix-flatpak
           ./modules/nixos/base
           ./modules/nixos/bullshit-machine
           {
@@ -160,6 +163,7 @@
               type = "desktop";
               desktop.dedicatedGraphicsType = "nvidia";
               desktop.wakeOnLanInterface = "eno2";
+              desktop.greeterType = "noctalia-greeter";
             };
           }
         ];

@@ -11,6 +11,9 @@ let
   lua = lib.generators.mkLuaInline;
   mainMod = "SUPER";
   convertToHyprEnv = envList: map (env: { _args = lib.strings.splitString "=" env; }) envList;
+  tvMonitor = "HDMI-A-2";
+  mainMonitor = "DP-3";
+  leftMonitor = "DP-4";
   dsp = {
     exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
     close = lua "hl.dsp.window.close()";
@@ -139,19 +142,19 @@ in
         };
         monitor = [
           {
-            output = "DP-4";
+            output = leftMonitor;
             mode = "2560x1440@144";
             position = "0x0";
             scale = "1";
           }
           {
-            output = "DP-3";
+            output = mainMonitor;
             mode = "2560x1440@144";
             position = "2560x0";
             scale = "1";
           }
           {
-            output = "HDMI-A-2";
+            output = tvMonitor;
             disabled = true;
           }
         ];
@@ -160,12 +163,12 @@ in
           builtins.genList (i: [
             {
               workspace = "${toString (i + 1)}";
-              monitor = "DP-3";
+              monitor = mainMonitor;
               persistent = true;
             }
             {
               workspace = "${toString (i + 6)}";
-              monitor = "DP-4";
+              monitor = leftMonitor;
               persistent = true;
             }
           ]) 5

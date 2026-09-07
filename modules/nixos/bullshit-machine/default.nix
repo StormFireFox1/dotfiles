@@ -78,6 +78,21 @@ in
       gamescopeSession.enable = true;
     };
 
+    services.flatpak = {
+      enable = true;
+      packages = [
+        {
+          appId = "com.nvidia.geforcenow";
+          origin = "GeForceNOW";
+        }
+      ];
+      remotes = [
+        {
+          name = "GeForceNOW";
+          location = "https://international.download.nvidia.com/GFNLinux/flatpak/geforcenow.flatpakrepo";
+        }
+      ];
+    };
     services.paseo = {
       enable = true;
       openFirewall = true;
@@ -121,6 +136,7 @@ in
       winetricks
       wineWow64Packages.stable
       wineWow64Packages.staging
+      reaper
       yabridge
       yabridgectl
       (writeShellScriptBin "synthesize-bazzite" ''

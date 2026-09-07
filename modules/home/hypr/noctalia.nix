@@ -5,6 +5,8 @@
 }:
 let
   cfg = config.fireflake.hypr;
+  mainMonitor = "DP-3";
+  leftMonitor = "DP-4";
 in
 {
   config = lib.mkIf (cfg.enable && cfg.shellType == "noctalia") {
@@ -87,7 +89,7 @@ in
           widget = {
             disabled_password_box = {
               type = "login_box";
-              output = "DP-4";
+              output = leftMonitor;
               enabled = false;
             };
             password_box = {
@@ -109,7 +111,6 @@ in
                 show_caps_lock = true;
                 show_keyboard_layout = true;
                 show_login_button = true;
-                show_password_hint = true;
                 show_media = true;
                 show_session_buttons = true;
                 show_weather = false;
@@ -121,7 +122,7 @@ in
               box_width = 640.0;
               cx = 1280.0;
               cy = 752.0;
-              output = "DP-3";
+              output = "DP-1";
               rotation = 0.0;
               type = "clock";
 
@@ -136,7 +137,7 @@ in
               box_width = 384.0;
               cx = 1280.0;
               cy = 848.0;
-              output = "DP-3";
+              output = "DP-1";
               rotation = 0.0;
               type = "clock";
 
@@ -151,7 +152,7 @@ in
               box_width = 256.0;
               cx = 1280.0;
               cy = 1296.0;
-              output = "DP-3";
+              output = "DP-1";
               rotation = 0.0;
               type = "weather";
 
@@ -165,7 +166,7 @@ in
               box_width = 736.0;
               cx = 320.0;
               cy = 1336.0;
-              output = "DP-3";
+              output = "DP-1";
               rotation = 0.0;
               type = "audio_visualizer";
 
@@ -184,7 +185,7 @@ in
               box_width = 656.0;
               cx = 1280.0;
               cy = 592.0;
-              output = "DP-3";
+              output = "DP-1";
               rotation = 0.0;
               type = "sticker";
 

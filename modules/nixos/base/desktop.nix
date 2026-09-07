@@ -23,6 +23,13 @@ in
       type = types.str;
       description = "What network interface will be used to enable Wake-on-LAN support.";
     };
+    greeterType = lib.mkOption {
+      type = types.enum [
+        "sddm"
+        "noctalia-greeter"
+      ];
+      description = "Type of greeter used for login screen.";
+    };
   };
 
   config = lib.mkIf (config.fireflake.nixos.type == "desktop") {
@@ -40,8 +47,25 @@ in
     # Configure keymap in X11
     services.xserver.xkb.layout = "us";
     services.xserver.xkb.options = "eurosign:e,caps:escape";
-    services.displayManager.sddm.enable = true;
-    services.displayManager.sddm.wayland.enable = true;
+    services.displayManager.sddm.enable = cfg.greeterType == "sddm";
+    services.displayManager.sddm.wayland.enable = cfg.greeterType == "sddm";
+    services.displayManager.noctalia-greeter = {
+      enable = cfg.greeterType == "noctalia-greeter";
+      settings = {
+        output = {
+          name = "DP-3";
+          width = 2560;
+          height = 1440;
+        };
+        user.default = "ghost";
+        cursor.size = 24;
+        keyboard.layout = "us";
+      };
+      cursorTheme = {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Ice";
+      };
+    };
     services.libinput.enable = true;
     fonts.packages = with pkgs; [
       nerd-fonts.fira-code
