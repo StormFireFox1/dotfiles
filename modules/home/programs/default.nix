@@ -24,6 +24,7 @@ in
     ./base/lazygit.nix
     ./base/ncspot.nix
     ./base/opencode.nix
+    ./base/pi-coding-agent.nix
     ./base/ssh.nix
     ./base/starship.nix
     ./base/vscode.nix

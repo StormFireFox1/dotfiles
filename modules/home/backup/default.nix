@@ -30,7 +30,10 @@ in
       enable = true;
       backups = {
         home = {
-          consistency = {
+          location = {
+            excludeHomeManagerSymlinks = true;
+          };
+          settings = {
             checks = [
               {
                 name = "repository";
@@ -49,8 +52,6 @@ in
                 frequency = "6 weeks";
               }
             ];
-          };
-          location = {
             patterns = [
               "R ${config.home.homeDirectory}"
               "- ${config.home.homeDirectory}/.cache"
@@ -63,21 +64,14 @@ in
                 label = "StormDrive";
               }
             ];
-            excludeHomeManagerSymlinks = true;
-          };
-          storage = {
-            extraConfig = {
-              compression = "auto,zstd";
-              ssh_command = "ssh -i ${config.home.homeDirectory}/.ssh/id_ed25519";
-              remote_path = "/usr/local/bin/borg";
-              encryption_passphrase = "{credential file ${config.home.homeDirectory}/.config/borgmatic.d/key}";
-            };
-          };
-          retention = {
-            keepHourly = 3;
-            keepDaily = 7;
-            keepMonthly = 6;
-            keepYearly = 2;
+            compression = "auto,zstd";
+            ssh_command = "ssh -i ${config.home.homeDirectory}/.ssh/id_ed25519";
+            remote_path = "/usr/local/bin/borg";
+            encryption_passphrase = "{credential file ${config.home.homeDirectory}/.config/borgmatic.d/key}";
+            keep_hourly = 3;
+            keep_daily = 7;
+            keep_monthly = 6;
+            keep_yearly = 2;
           };
         };
       };
