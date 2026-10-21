@@ -32,6 +32,18 @@ in
         example = "noctalia";
         description = "The desktop shell type to use. 'hypr' installs Hyprlock, Hypridle, Hyprpaper, Ashell and Hyprsunset. 'noctalia' uses the Noctalia shell configuration. This may become the default in the future.";
       };
+      mainMonitor = lib.mkOption {
+        type = types.str;
+        default = "desc:Acer Technologies VG271U M3 3317055E63LAH";
+        example = "DP-3";
+        description = "The output identifier (or 'desc:<monitor description>' as reported by `hyprctl monitors all`) of the main monitor, placed to the right of the left monitor.";
+      };
+      leftMonitor = lib.mkOption {
+        type = types.str;
+        default = "desc:LG Electronics 27GL850 006NTYT3J042";
+        example = "DP-4";
+        description = "The output identifier (or 'desc:<monitor description>' as reported by `hyprctl monitors all`) of the left monitor.";
+      };
     };
   };
 

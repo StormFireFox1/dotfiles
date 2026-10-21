@@ -12,8 +12,8 @@ let
   mainMod = "SUPER";
   convertToHyprEnv = envList: map (env: { _args = lib.strings.splitString "=" env; }) envList;
   tvMonitor = "HDMI-A-2";
-  mainMonitor = "DP-3";
-  leftMonitor = "DP-4";
+  mainMonitor = cfg.mainMonitor;
+  leftMonitor = cfg.leftMonitor;
   dsp = {
     exec = cmd: lua ''hl.dsp.exec_cmd("${cmd}")'';
     close = lua "hl.dsp.window.close()";

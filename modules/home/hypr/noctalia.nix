@@ -5,8 +5,8 @@
 }:
 let
   cfg = config.fireflake.hypr;
-  mainMonitor = "DP-3";
-  leftMonitor = "DP-4";
+  mainMonitor = cfg.mainMonitor;
+  leftMonitor = cfg.leftMonitor;
 in
 {
   config = lib.mkIf (cfg.enable && cfg.shellType == "noctalia") {
@@ -97,7 +97,7 @@ in
               box_width = 810.0;
               cx = 1280.0;
               cy = 1054.0;
-              output = "DP-3";
+              output = mainMonitor;
               rotation = 0.0;
               type = "login_box";
 
