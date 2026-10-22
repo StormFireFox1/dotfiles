@@ -13,6 +13,7 @@ let
       user = "Storm_FireFox1";
       port = 31187;
     }
+    { name = "kaos"; }
     { name = "bullshitmachine"; }
     { name = "gatekeeper"; }
     { name = "homander"; }

@@ -64,6 +64,14 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
   };
 
+  nixConfig = {
+    extra-substituters = [ "https://nixos-raspberrypi.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+    ];
+    connect-timeout = 5;
+  };
+
   outputs =
     {
       self,
@@ -80,13 +88,16 @@
       ...
     }@inputs:
     let
+      vscodeOverlay = inputs.nix-vscode-extensions.overlays.default;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         config.allowUnfree = true;
+        overlays = [ vscodeOverlay ];
       };
       darwinPkgs = import nixpkgs {
         system = "aarch64-darwin";
         config.allowUnfree = true;
+        overlays = [ vscodeOverlay ];
       };
       lib = pkgs.lib;
       commonHomeModules = [
@@ -94,11 +105,6 @@
         inputs.catppuccin.homeModules.catppuccin
         inputs.nix-doom-emacs-unstraightened.homeModule
         inputs.noctalia.homeModules.default
-        {
-          nixpkgs.overlays = [
-            inputs.nix-vscode-extensions.overlays.default
-          ];
-        }
         ./modules/home
       ];
     in
@@ -186,6 +192,8 @@
             fireflake.nixos.type = "server";
             fireflake.nixos.nix.pullAtticCaches = false;
 
+            nixpkgs.overlays = [ vscodeOverlay ];
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -208,6 +216,49 @@
         ];
       };
 
+      # Headless Raspberry Pi with coding agents running full-time.
+      nixosConfigurations.Kaos = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+          meta = {
+            hostname = "kaos";
+          };
+        };
+        modules = [
+          agenix.nixosModules.default
+          paseo.nixosModules.default
+          ./modules/nixos-hardware/rpi4/filesystems.nix
+          ./modules/nixos-hardware/rpi4/hardware.nix
+          ./modules/nixos/kaos
+          {
+            fireflake.nixos.type = "server";
+            fireflake.nixos.nix.pullAtticCaches = false;
+          }
+        ];
+      };
+
+      nixosConfigurations.KaosImage = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+          meta = {
+            hostname = "kaos";
+          };
+        };
+        modules = [
+          "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image.nix"
+          agenix.nixosModules.default
+          paseo.nixosModules.default
+          ./modules/nixos-hardware/rpi4/hardware.nix
+          ./modules/nixos/kaos
+          {
+            fireflake.nixos.type = "server";
+            fireflake.nixos.nix.pullAtticCaches = false;
+          }
+        ];
+      };
+
       darwinConfigurations.StormPrism = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
@@ -217,6 +268,7 @@
         ];
         specialArgs = { inherit inputs; };
       };
+
     }
     // flake-utils.lib.eachDefaultSystem (
       system:
@@ -240,9 +292,13 @@
             home-manager.packages.${system}.default
           ];
         };
-        packages = pkgs.lib.optionalAttrs (system == "x86_64-linux") {
-          rescue-iso = self.nixosConfigurations.RescueUSB.config.system.build.isoImage;
-        };
+        packages =
+          pkgs.lib.optionalAttrs (system == "x86_64-linux") {
+            rescue-iso = self.nixosConfigurations.RescueUSB.config.system.build.isoImage;
+          }
+          // pkgs.lib.optionalAttrs (system == "aarch64-linux") {
+            kaos-sd-image = self.nixosConfigurations.KaosImage.config.system.build.sdImage;
+          };
       }
     );
 }

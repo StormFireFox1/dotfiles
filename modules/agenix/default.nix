@@ -1,6 +1,7 @@
 { meta, ... }:
 let
   secrets = {
+    kaos = { };
     rescue = { };
     BullshitMachine = {
       StormDriveSmbKey = {
