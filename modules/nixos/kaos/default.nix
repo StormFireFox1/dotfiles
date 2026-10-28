@@ -40,7 +40,9 @@ in
   };
 
   config = {
-    networking.hostName = meta.hostname;
+    # Capitalized to match the nixosConfigurations attr name so nh resolves it;
+    # meta.hostname ("kaos") stays lowercase for agenix secret keys.
+    networking.hostName = "Kaos";
     networking.networkmanager.enable = true;
 
     time.timeZone = cfg.timezone;
