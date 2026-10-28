@@ -90,6 +90,7 @@ in
             python3
             fish
             nushell
+            jujutsu
             uv
             fd
             ripgrep
