@@ -222,7 +222,7 @@
         specialArgs = {
           inherit inputs;
           meta = {
-            hostname = "kaos";
+            hostname = "Kaos";
           };
         };
         modules = [
@@ -243,7 +243,7 @@
         specialArgs = {
           inherit inputs;
           meta = {
-            hostname = "kaos";
+            hostname = "Kaos";
           };
         };
         modules = [
