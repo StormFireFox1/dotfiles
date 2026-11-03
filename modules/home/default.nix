@@ -30,7 +30,6 @@ in
       packages = with pkgs; [
         _1password-cli
         adwaita-icon-theme
-        attic-client
         bun
         dua
         dust
@@ -42,6 +41,7 @@ in
         kubectl
         neovim
         nerd-fonts.symbols-only
+        niks3
         nil
         stu
         uutils-coreutils-noprefix

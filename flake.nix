@@ -13,11 +13,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Personal fork of Attic until Nix 2.31 support is merged in.
-    attic = {
-      url = "github:StormFireFox1/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +57,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
+    orca-nix.url = "github:kevinpita/orca-nix";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
   nixConfig = {
@@ -83,7 +80,6 @@
       nix-homebrew,
       treefmt-nix,
       paseo,
-      attic,
       nix-flatpak,
       ...
     }@inputs:
@@ -190,7 +186,6 @@
           home-manager.nixosModules.home-manager
           {
             fireflake.nixos.type = "server";
-            fireflake.nixos.nix.pullAtticCaches = false;
 
             nixpkgs.overlays = [ vscodeOverlay ];
 
@@ -233,7 +228,6 @@
           ./modules/nixos/kaos
           {
             fireflake.nixos.type = "server";
-            fireflake.nixos.nix.pullAtticCaches = false;
           }
         ];
       };
@@ -254,7 +248,6 @@
           ./modules/nixos/kaos
           {
             fireflake.nixos.type = "server";
-            fireflake.nixos.nix.pullAtticCaches = false;
           }
         ];
       };
@@ -290,6 +283,7 @@
             agenix.packages.${system}.default
             nh
             home-manager.packages.${system}.default
+            niks3
           ];
         };
         packages =

@@ -17,10 +17,6 @@ let
         owner = "root";
         group = "root";
       };
-      AtticCacheNetrc = {
-        owner = "root";
-        group = "root";
-      };
     };
   };
 in
