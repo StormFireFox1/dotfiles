@@ -19,6 +19,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    inputs.orca-nix.nixosModules.default
   ];
   config = lib.mkIf (cfg.type == "desktop") {
     systemd.tmpfiles.rules = map (x: "d " + x + " 0755 ghost users -") mounts;
@@ -77,6 +78,7 @@ in
       localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = true;
     };
+    programs.orca-ide.enable = true;
 
     services.flatpak = {
       enable = true;

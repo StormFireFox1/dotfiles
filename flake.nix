@@ -62,6 +62,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
+    orca-nix.url = "github:kevinpita/orca-nix";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
   nixConfig = {
