@@ -1,7 +1,16 @@
 { meta, ... }:
 let
   secrets = {
-    kaos = { };
+    kaos = {
+      PaseoPassword = {
+        owner = "root";
+        group = "root";
+      };
+      HermesOpenRouterApiKey = {
+        owner = "root";
+        group = "root";
+      };
+    };
     rescue = { };
     BullshitMachine = {
       StormDriveSmbKey = {
