@@ -16,9 +16,6 @@ in
       package = inputs.llm-agents.packages.${system}.pi;
     };
 
-    # oh-my-pi (OMP), a terminal-based coding agent with multi-model
-    # support (https://github.com/can1357/oh-my-pi). home-manager has no
-    # dedicated module for it, so it's just installed as a plain package.
     home.packages = [ inputs.llm-agents.packages.${system}.omp ];
   };
 }
