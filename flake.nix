@@ -280,10 +280,11 @@
         };
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            git
             agenix.packages.${system}.default
-            nh
+            git
             home-manager.packages.${system}.default
+            just
+            nh
             niks3
           ];
         };
