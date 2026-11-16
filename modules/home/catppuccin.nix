@@ -10,7 +10,7 @@
     delta.enable = true;
     fish.enable = true;
     fzf.enable = true;
-    kitty.enable = true;
+    ghostty.enable = true;
     lazygit.enable = true;
     nushell.enable = true;
     gh-dash.enable = true;

@@ -13,8 +13,7 @@ some form of unique namespace for certain settings in my configurations.
 I currently manage two machines from this repo:
 - _"Bullshit Machine"_, my PC running NixOS on a Hyprland-based setup
 - _"Storm Prism"_, my MacBook Pro running macOS, managed via `nix-darwin` and
-  Homebrew, running [Aerospace](https://github.com/nikitabobko/AeroSpace) as a
-  window manager.
+  Homebrew, running [OmniWM](https://omniwm.app) as a window manager.
 
 ## Usage
 

@@ -52,9 +52,7 @@ in
         "kc" = "kubectl create";
         "kd" = "kubectl describe";
         "kg" = "kubectl get";
-        "k@" = "kitty @";
         "k" = "kubectl";
-        "kssh" = "kitten ssh";
         "savemp3" = "yt-dlp -f bestaudio -x --audio-format m4a";
         "saveyt" = "yt-dlp -f bestvideo+bestaudio --recode-video mp4";
         "tf" = "tofu";

@@ -13,6 +13,13 @@
     configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
     defaults = {
+      # Subtle system-wide window corner rounding (macOS 26.4+, same keys OmniWM's
+      # "System-wide Window Corners" control writes). Applies to all standard and
+      # panel windows; affected apps need a relaunch to pick it up.
+      CustomUserPreferences."NSGlobalDomain" = {
+        NSConvolutionOverride1 = 4.0;
+        NSConvolutionOverride2 = 4.0;
+      };
       loginwindow = {
         GuestEnabled = false;
         DisableConsoleAccess = true;

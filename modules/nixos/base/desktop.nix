@@ -154,9 +154,6 @@ in
     };
     networking.interfaces.${cfg.wakeOnLanInterface}.wakeOnLan.enable = true;
 
-    environment.variables = {
-      "KITTY_DISABLE_WAYLAND" = "0";
-    };
     environment.etc = {
       "1password/custom_allowed_browsers" = {
         text = ''
@@ -176,7 +173,7 @@ in
       hyprpolkitagent
       pavucontrol
       pdftk
-      kitty
+      ghostty
       nextdns
       qemu
       quickemu

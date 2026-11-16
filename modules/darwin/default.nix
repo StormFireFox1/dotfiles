@@ -12,7 +12,6 @@ in
     ../misc/ssh-keys.nix
     ./homebrew.nix
     ./settings.nix
-    ./aerospace.nix
   ];
   nix = {
     linux-builder = {
@@ -89,6 +88,7 @@ in
   programs.fish.enable = true;
 
   environment.systemPackages = with pkgs; [
+    ghostty-bin
     podman
     qemu
   ];

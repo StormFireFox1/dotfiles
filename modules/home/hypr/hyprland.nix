@@ -397,7 +397,7 @@ in
             (bind "${mainMod} + W" dsp.close)
             (bind "${mainMod} + F" dsp.fullscreen)
             (bind "${mainMod} + V" dsp.float)
-            (bind "${mainMod} + Return" (dsp.exec "kitty"))
+            (bind "${mainMod} + Return" (dsp.exec "ghostty"))
             (bind "${mainMod} + SHIFT + Q" (dsp.exec "hyprshutdown"))
             (bind "${mainMod} + E" (dsp.exec "dolphin"))
             (bind "${mainMod} + SHIFT + x" (dsp.exec (noctaliaIpc "screenshot-region")))

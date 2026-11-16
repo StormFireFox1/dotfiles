@@ -139,6 +139,7 @@
                 };
                 programs = {
                   enable = true;
+                  darwin.enable = true;
                 };
               };
             }

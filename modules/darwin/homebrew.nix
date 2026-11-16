@@ -14,14 +14,12 @@
 
     casks = [
       # OS
+      "omniwm"
       "raycast"
       "cleanshot"
       "betterdisplay"
 
       # Developer
-      "alacritty"
-      "kitty"
-      "warp"
       "1password"
       "mullvad-vpn"
       "wireshark-app"
@@ -39,8 +37,6 @@
       "firefox"
     ];
     brews = [ ];
-    taps = [
-      "nikitabobko/tap"
-    ];
+    taps = [ ];
   };
 }

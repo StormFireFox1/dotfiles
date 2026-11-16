@@ -1,6 +1,6 @@
 set REPO (select-repo)
 set REPO_NAME (string split -f 2 -m 1 -r "/" "$REPO")
-if command -q kitty
-    kitty @ set-tab-title "$REPO_NAME"
+if test "$TERM" = xterm-ghostty
+    printf '\e]2;%s\a' "$REPO_NAME"
 end
 cd "$REPO" && nvim

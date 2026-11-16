@@ -16,13 +16,14 @@ in
     ./base/direnv.nix
     ./base/fzf.nix
     ./base/gh.nix
+    ./base/ghostty.nix
     ./base/git.nix
     ./base/helix.nix
     ./base/jj.nix
     ./base/jjui.nix
-    ./base/kitty.nix
     ./base/lazygit.nix
     ./base/ncspot.nix
+    ./base/omniwm.nix
     ./base/opencode.nix
     ./base/pi-coding-agent.nix
     ./base/ssh.nix
