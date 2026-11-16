@@ -18,7 +18,7 @@ in
       settings = {
         command = "${pkgs.fish}/bin/fish";
         font-family = "JetBrainsMono Nerd Font";
-        font-size = 16;
+        font-size = 14;
         background-opacity = "0.9";
         confirm-close-surface = false;
         shell-integration-features = "ssh-env,ssh-terminfo";
